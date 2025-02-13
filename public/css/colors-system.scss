@@ -1,0 +1,69 @@
+// Color system
+$color_properties: (
+  scale:(
+    black: #222222,
+    gray_06: #666666,
+    gray_05: #999999,
+    gray_04: #dcdcdc,
+    gray_03: #e5e5e5,
+    gray_02: #f1f1f1,
+    gray_01: #f9f9f9,
+    white: #ffffff
+  ),
+  primary: (
+    mian: #FFBD19,
+    darken: #473300,
+    dark: #F3B527,
+    light: #FFE39E,
+    text: #FFBD19,
+    bg: #FFF6E0,
+    line: #F6D584
+  ),
+  secondary: (
+    mian: #1ACEFF,
+    darken: #003847,
+    dark: #00A5D1,
+    light: #9EEAFF,
+    text: #4FCBF2,
+    bg: #E0F8FF
+  ),
+  basic: (
+    error: #ff5065,
+    positie: #5057FF
+  ),
+  studyColor: (
+    korean: #AB4DE5,
+    math: #6F91F7,
+    socialStudies: #EC46D1,
+    english: #FFD077,
+    science: #63D8EC,
+    common: #222222,
+    attendanceTime: #FFBD19,
+    goalTime: #2FCD94,
+    studyComplete: #FF5065
+  )
+);
+
+// Generate classes dynamically
+@each $name, $properties in $color_properties {
+  @each $property_name, $color_value in $properties {
+    .#{$name}-text-#{$property_name} {
+      color: $color_value !important;
+    }
+    .#{$name}-bg-#{$property_name} {
+      background-color: $color_value !important;
+    }
+
+    .#{$name}-bg-#{$property_name}-hover {
+      &:hover{
+        background-color: $color_value !important;
+      }
+    }
+    .#{$name}-text-#{$property_name}-hover {
+      &:hover{
+        color: $color_value !important;
+      }
+    }
+
+  }
+}

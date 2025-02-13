@@ -1,0 +1,619 @@
+header,
+footer {
+    display: none;
+}
+
+#layout_div_content {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #CDEDFF;
+    background-image: url('/images/learning-bg.png');
+    background-position: center;
+    background-size: cover;
+}
+
+.video-container {
+    max-height: 762px;
+}
+
+.video-wrap {
+    width: 100%;
+    background: #FFF6E0;
+    text-align: center;
+}
+
+#lectureVideo {
+    width: 100%;
+    height: calc(100vh - 300px);
+    cursor: pointer;
+    background-color: #333;
+}
+
+/* 반대 */
+[data-btn-study-video-main-tab] img:nth-child(1) {
+    display: none;
+}
+
+[data-btn-study-video-main-tab] img:nth-child(2) {
+    display: inline;
+}
+
+/* 첫번째 이미지 */
+[data-btn-study-video-main-tab].active img:nth-child(1) {
+    display: inline;
+}
+
+/* 두번재 이미지 */
+[data-btn-study-video-main-tab].active img:nth-child(2) {
+    display: none;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    border-radius: 0px 12px 12px 12px;
+}
+
+.video-container .video-controls {
+    display: flex;
+    align-items: center;
+}
+
+.video-container .video-controls-pt {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.video-container button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.video-container #progressBar {
+    flex-grow: 1;
+    margin: 0 10px;
+    color: #FFC747;
+}
+
+.video-container span {
+    color: white;
+    margin-right: 10px;
+}
+
+.video-container .video-cont-tab {
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    display: inline-flex;
+}
+
+.video-container .video-cont-tab li {
+    padding: 20px 0;
+    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+    opacity: 0.5;
+}
+
+.video-container .video-cont-tab li span {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-size: 18px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+
+.video-container .video-cont-tab li.beginning {
+    background: #1FA1E9;
+}
+
+.video-container .video-cont-tab li.beginning span {
+    color: #1FA1E9;
+}
+
+
+.video-container .video-cont-tab li.concept {
+    background: #1FE9E9;
+}
+
+.video-container .video-cont-tab li.concept span {
+    color: #1FE9E9;
+}
+
+.video-container .video-cont-tab li.questions {
+    background: #99DD42;
+}
+
+.video-container .video-cont-tab li.questions span {
+    color: #99DD42;
+}
+
+
+.video-container .video-cont-tab li.review {
+    background: #DD4242;
+}
+
+.video-container .video-cont-tab li.review span {
+    color: #DD4242;
+}
+
+.video-container .video-cont-tab li.assessment {
+    background: #FFC747;
+}
+
+.video-container .video-cont-tab li.assessment span {
+    color: #FFC747;
+}
+
+
+
+.video-container .video-cont-tab li.active,
+.video-container .video-cont-tab li.active span {
+    color: #222;
+    opacity: 1;
+    font-weight: 700;
+}
+
+
+.video-title {
+    background: #1FA1E9;
+    padding: 10px 32px;
+    border-radius: 0px;
+}
+.video-cont-tab-list .video-cont-tab-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: #FF5065;
+    border-radius: 12px 0 0 0px;
+}
+.video-cont-tab-list .video-cont-tab-item button{
+    border-radius: 12px;
+    height: 100%;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.video-title .subject-name {
+    font-weight: 600;
+    color: #6F91F7;
+    background: #fff;
+    padding: 8px 20px;
+    border-radius: 30px;
+}
+
+.hart-btn-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.fullscreen {
+    position: absolute;
+    z-index: 9999;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    /* height: 90vh !important; */
+}
+
+.fullscreen #lectureVideo {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #333;
+}
+
+.fullscreen .video-controls-pt {
+    position: fixed;
+}
+
+
+.fullscreen .video-play-icon {
+    position: fixed;
+    transform: translate(-50%, calc(-50%));
+
+}
+
+.progress-bar-buffer{
+    position: absolute;
+    left: 0;
+    height: 100%;
+}
+
+.video-progress-spinner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 37px)) scale(4);
+    color: #FFC747;
+}
+
+#volumeBar {
+    -webkit-appearance: none;
+    background: #ddd;
+    /* 트랙의 기본 색상 */
+    opacity: 0.9;
+    outline: none;
+    transition: all 0.2s ease;
+    border-radius: 10px;
+    width: 8px;
+    height: 8px;
+}
+
+#volumeBar:hover {
+    opacity: 1;
+}
+
+#volumeBar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 8px;
+    height: 8px;
+    background: #FFC747;
+    /* 손잡이의 색상 */
+    cursor: pointer;
+    border-radius: 50%;
+    /* 손잡이를 둥글게 */
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+    /* 손잡이의 그림자 */
+    transform: scale(1.5);
+}
+
+#volumeBar::-moz-range-thumb {
+    width: 8px;
+    height: 8px;
+    background: #FFC747;
+    /* 손잡이의 색상 */
+    cursor: pointer;
+    border-radius: 50%;
+    /* 손잡이를 둥글게 */
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+    /* 손잡이의 그림자 */
+    transform: scale(1.5);
+
+}
+
+#volumeBar::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: linear-gradient(to right, #FFC747 0%, #FFC747 var(--value), #ddd var(--value), #ddd 100%);
+    border-radius: 5px;
+    /* 트랙의 모서리를 둥글게 */
+}
+
+#volumeBar::-moz-range-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: linear-gradient(to right, #FFC747 0%, #FFC747 var(--value), #ddd var(--value), #ddd 100%);
+    border-radius: 5px;
+    /* 트랙의 모서리를 둥글게 */
+}
+
+#speedButton span {
+    margin: 0;
+    font-size: 20px;
+    width: 26px;
+}
+
+#speedSelect {
+    position: absolute;
+    bottom: 60%;
+    /* 요소의 기준점을 아래로 설정 */
+    left: 0;
+    right: 0;
+    background-color: #FFC747;
+    width: 60px;
+    text-align: center;
+    border-radius: 6px;
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    /* 높이의 변화를 부드럽게 */
+    transform-origin: bottom center;
+    /* 변환 기준점을 아래로 설정 */
+    text-align: center;
+}
+
+#speedSelect.show {
+    height: 96px;
+}
+
+#speedSelect li {
+    padding: 4px 0;
+    color: #473300;
+    transition: all 0.2s ease;
+    border-radius: 6px;
+}
+
+#speedSelect li:hover {
+    background-color: #ffd15f;
+}
+
+.aside-right {
+    padding-top: 72px;
+}
+
+.aside-right .learning-wrap {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.aside-right .learning-list-header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    background: #1FA1E9;
+}
+
+.aside-right .learning-list-body {
+    overflow-y: auto;
+    position: relative;
+}
+
+.aside-right .learning-list-body::-webkit-scrollbar {
+    background: #FFF6E0;
+    width: 8px;
+    /* Chrome, Safari, Opera */
+}
+
+.aside-right .learning-list-body::-webkit-scrollbar-thumb {
+    background: #FFC747;
+    border-radius: 10px;
+}
+
+.aside-right .learning-list-body ul li:not(:last-child) {
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.aside-right .learning-list-body ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 24px;
+    background: #fff;
+}
+
+.aside-right .learning-list-body ul li .subject-name {
+    font-size: 18px;
+    font-weight: 700;
+    padding-bottom: 8px;
+    color: #999999;
+}
+
+.aside-right .learning-list-body ul li .lecture-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #999999;
+}
+
+.aside-right .learning-list-body ul li .complete-learning .subject-name {
+    font-size: 18px;
+    font-weight: 600;
+    padding-bottom: 8px;
+    color: #222222;
+}
+
+.aside-right .learning-list-body ul li .status-current {
+    display: inline-block;
+    border-radius: 16px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 6px 16px;
+    background: #DCDCDC;
+    margin-top: 12px;
+}
+
+.status-current.completion {
+    background: #2FCD94;
+}
+
+.status-current.doing {
+    background: #FF5065;
+}
+
+.aside-right .learning-list-body ul li img {
+    width: 72px;
+}
+
+.video-cont-tab {
+    display: flex;
+    align-items: center;
+}
+
+.custom-scrollbar {
+    width: 12px;
+    height: 98%;
+    position: absolute;
+    right: 12px;
+    top: 1%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.custom-scrollbar .scrollbar-track {
+    background-color: #FFF6E0;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.custom-scrollbar .scrollbar-thumb {
+    background-color: #FFC747;
+    border-radius: 10px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+}
+
+.video-play-icon {
+    position: absolute;
+    background: #FFC74750;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 37px));
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 9997;
+}
+
+#lectureVideo:hover~.video-play-icon {
+    background: #FFC747;
+}
+
+.video-play-icon:hover {
+    background: #FFC747;
+    cursor: pointer;
+}
+
+.video-play-icon img {
+    width: 120px;
+    height: 120px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.video-play-icon img.video-play-icon-img {
+    transform: rotateX(0deg);
+    top: 0px;
+}
+
+.video-play-icon img.video-play-icon-img.active {
+    transform: rotateX(0deg);
+}
+
+.video-play-icon img.video-pause-icon-img.active+img.video-play-icon-img {
+    top: 120px;
+    transform: rotateX(45deg);
+}
+
+.video-play-icon img.video-pause-icon-img {
+    position: absolute;
+    bottom: 120px;
+    transform: rotateX(180deg);
+}
+
+.video-play-icon img.video-pause-icon-img.active {
+    bottom: 0px;
+    transform: rotateX(0deg);
+}
+
+.video-error-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #FFC747;
+    flex-direction: column;
+    z-index: 9997;
+}
+
+.video-error-message img{
+    width: 50%;
+}
+
+@media (max-width: 1400px) {
+
+    main#layout_div_content{
+        height: 100vh;
+    }
+    .video-title {
+        padding: 6px 16px;
+    }
+
+    .aside-right {
+        padding-top: 56px;
+    }
+
+    .video-container {
+        max-height: 95vh;
+    }
+
+    .video-container .video-cont-tab li {
+        padding: 12px 16px;
+        width: auto;
+        font-size: 16px;
+    }
+    .aside-right .learning-list-body ul li{
+        padding: 12px 12px;
+    }
+
+    .aside-right .learning-list-body ul li img {
+        display: none;
+    }
+
+    .aside-right .learning-list-body ul li .subject-name {
+        font-size: 16px !important;
+    }
+
+    .aside-right .learning-list-body ul li .lecture-name {
+        font-size: 14px;
+    }
+
+    .aside-right .learning-list-body ul li .status-current {
+        font-size: 16px;
+    }
+
+    .video-container button {
+        transform: scale(0.9);
+    }
+
+    #lectureVideo {
+        height: calc(100vh - 150px);
+    }
+
+    @media (max-width: 992px) {
+        #layout_div_content {
+            height: auto;
+            padding-top: 10px !important;
+            padding-left: 0px !important;
+        }
+        .aside-right {
+            padding-top: 20px;
+            gap: 12px;
+            padding-bottom: 20px;
+            padding-left: 12px !important;
+        }
+    }
+}

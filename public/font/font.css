@@ -1,0 +1,596 @@
+.text-r-15px {
+  font-size: 0.9375rem !important;
+  font-weight: 300 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-m-15px {
+  font-size: 0.9375rem !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-sb-15px {
+  font-size: 0.9375rem !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-b-15px {
+  font-size: 0.9375rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-r-16px {
+  font-size: 1rem !important;
+  font-weight: 300 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-m-16px {
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-sb-16px {
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-b-16px {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-r-18px {
+  font-size: 1.125rem !important;
+  font-weight: 300 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-m-18px {
+  font-size: 1.125rem !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-sb-18px {
+  font-size: 1.125rem !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-b-18px {
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-r-20px {
+  font-size: 1.25rem !important;
+  font-weight: 300 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-m-20px {
+  font-size: 1.25rem !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-sb-20px {
+  font-size: 1.25rem !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-b-20px {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-r-24px {
+  font-size: 1.5rem !important;
+  font-weight: 300 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-m-24px {
+  font-size: 1.5rem !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-sb-24px {
+  font-size: 1.5rem !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-b-24px {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-r-28px {
+  font-size: 1.75rem !important;
+  font-weight: 300 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-m-28px {
+  font-size: 1.75rem !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-sb-28px {
+  font-size: 1.75rem !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-b-28px {
+  font-size: 1.75rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-r-32px {
+  font-size: 2rem !important;
+  font-weight: 300 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-m-32px {
+  font-size: 2rem !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-sb-32px {
+  font-size: 2rem !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-b-32px {
+  font-size: 2rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-r-42px {
+  font-size: 2.625rem !important;
+  font-weight: 300 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-m-42px {
+  font-size: 2.625rem !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-sb-42px {
+  font-size: 2.625rem !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-b-42px {
+  font-size: 2.625rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-r-52px {
+  font-size: 3.25rem !important;
+  font-weight: 300 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-m-52px {
+  font-size: 3.25rem !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-sb-52px {
+  font-size: 3.25rem !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+.text-b-52px {
+  font-size: 3.25rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02rem !important;
+}
+
+@media all and (max-width: 1400px) {
+  .text-r-15px {
+    font-size: 0.75rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-15px {
+    font-size: 0.75rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-15px {
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-15px {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+}
+@media all and (max-width: 1400px) {
+  .text-r-16px {
+    font-size: 0.8rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-16px {
+    font-size: 0.8rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-16px {
+    font-size: 0.8rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-16px {
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+}
+@media all and (max-width: 1400px) {
+  .text-r-18px {
+    font-size: 0.9rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-18px {
+    font-size: 0.9rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-18px {
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-18px {
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+}
+@media all and (max-width: 1400px) {
+  .text-r-20px {
+    font-size: 1rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-20px {
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-20px {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-20px {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+}
+@media all and (max-width: 1400px) {
+  .text-r-24px {
+    font-size: 1.2rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-24px {
+    font-size: 1.2rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-24px {
+    font-size: 1.2rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-24px {
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+}
+@media all and (max-width: 1400px) {
+  .text-r-28px {
+    font-size: 1.4rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-28px {
+    font-size: 1.4rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-28px {
+    font-size: 1.4rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-28px {
+    font-size: 1.4rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+}
+@media all and (max-width: 1400px) {
+  .text-r-32px {
+    font-size: 1.6rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-32px {
+    font-size: 1.6rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-32px {
+    font-size: 1.6rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-32px {
+    font-size: 1.6rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+}
+@media all and (max-width: 1400px) {
+  .text-r-42px {
+    font-size: 2.1rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-42px {
+    font-size: 2.1rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-42px {
+    font-size: 2.1rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-42px {
+    font-size: 2.1rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+}
+@media all and (max-width: 1400px) {
+  .text-r-52px {
+    font-size: 2.3rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-52px {
+    font-size: 2.3rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-52px {
+    font-size: 2.3rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-52px {
+    font-size: 2.3rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+}
+@media (max-width: 992px) {
+  .text-r-15px {
+    font-size: 0.70875rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-15px {
+    font-size: 0.70875rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-15px {
+    font-size: 0.70875rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-15px {
+    font-size: 0.70875rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-r-16px {
+    font-size: 0.756rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-16px {
+    font-size: 0.756rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-16px {
+    font-size: 0.756rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-16px {
+    font-size: 0.756rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-r-18px {
+    font-size: 0.8505rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-18px {
+    font-size: 0.8505rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-18px {
+    font-size: 0.8505rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-18px {
+    font-size: 0.8505rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-r-20px {
+    font-size: 0.945rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-20px {
+    font-size: 0.945rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-20px {
+    font-size: 0.945rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-20px {
+    font-size: 0.945rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-r-24px {
+    font-size: 1.134rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-24px {
+    font-size: 1.134rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-24px {
+    font-size: 1.134rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-24px {
+    font-size: 1.134rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-r-28px {
+    font-size: 1.323rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-28px {
+    font-size: 1.323rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-28px {
+    font-size: 1.323rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-28px {
+    font-size: 1.323rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-r-32px {
+    font-size: 1.512rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-32px {
+    font-size: 1.512rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-32px {
+    font-size: 1.512rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-32px {
+    font-size: 1.512rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-r-42px {
+    font-size: 1.9845rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-42px {
+    font-size: 1.9845rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-42px {
+    font-size: 1.9845rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-42px {
+    font-size: 1.9845rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-r-52px {
+    font-size: 2.1735rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-52px {
+    font-size: 2.1735rem !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-52px {
+    font-size: 2.1735rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-52px {
+    font-size: 2.1735rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+}/*# sourceMappingURL=font.css.map */

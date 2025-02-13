@@ -1,0 +1,1 @@
+<span>인증번호는 [{{ $user->auth }}] 입니다.</span>

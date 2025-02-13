@@ -1,0 +1,108 @@
+$text-sizes: (
+  '15px': 0.9375rem,
+  '16px': 1rem,
+  '18px': 1.125rem,
+  '20px': 1.25rem,
+  '24px': 1.5rem,
+  '28px': 1.75rem,
+  '32px': 2rem,
+  '42px': 2.625rem,
+  '52px': 3.25rem
+);
+
+$tablet-text-sizes: (
+  '15px': 0.75rem,
+  '16px': 0.8rem,
+  '18px': 0.9rem,
+  '20px': 1rem,
+  '24px': 1.2rem,
+  '28px': 1.4rem,
+  '32px': 1.6rem,
+  '42px': 2.1rem,
+  '52px': 2.3rem
+);
+
+$mobile-text-sizes: (
+  '15px': 0.70875rem,
+  '16px': 0.756rem,
+  '18px': 0.8505rem,
+  '20px': 0.945rem,
+  '24px': 1.134rem,
+  '28px': 1.323rem,
+  '32px': 1.512rem,
+  '42px': 1.9845rem,
+  '52px': 2.1735rem
+);
+
+@each $size, $value in $text-sizes {
+  .text-r-#{$size} {
+    font-size: map-get($text-sizes, $size) !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-m-#{$size} {
+    font-size: map-get($text-sizes, $size) !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-sb-#{$size} {
+    font-size: map-get($text-sizes, $size) !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02rem !important;
+  }
+  .text-b-#{$size} {
+    font-size: map-get($text-sizes, $size) !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02rem !important;
+  }
+}
+
+@each $size, $value in $tablet-text-sizes {
+  @media all and (max-width: 1400px) {
+    .text-r-#{$size} {
+      font-size: $value !important;
+      font-weight: 300 !important;
+      letter-spacing: -0.02rem !important;
+    }
+    .text-m-#{$size} {
+      font-size: $value !important;
+      font-weight: 400 !important;
+      letter-spacing: -0.02rem !important;
+    }
+    .text-sb-#{$size} {
+      font-size: $value !important;
+      font-weight: 500 !important;
+      letter-spacing: -0.02rem !important;
+    }
+    .text-b-#{$size} {
+      font-size: $value !important;
+      font-weight: 600 !important;
+      letter-spacing: -0.02rem !important;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  @each $size, $value in $mobile-text-sizes {
+    .text-r-#{$size} {
+      font-size: $value !important;
+      font-weight: 300 !important;
+      letter-spacing: -0.02rem !important;
+    }
+    .text-m-#{$size} {
+      font-size: $value !important;
+      font-weight: 400 !important;
+      letter-spacing: -0.02rem !important;
+    }
+    .text-sb-#{$size} {
+      font-size: $value !important;
+      font-weight: 500 !important;
+      letter-spacing: -0.02rem !important;
+    }
+    .text-b-#{$size} {
+      font-size: $value !important;
+      font-weight: 600 !important;
+      letter-spacing: -0.02rem !important;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 2H3C2.45 2 2 2.45 2 3V7C2 7.55 2.45 8 3 8C3.55 8 4 7.55 4 7V4H7C7.55 4 8 3.55 8 3C8 2.45 7.55 2 7 2Z" fill="#222222"/>
+<path d="M21 2H17C16.45 2 16 2.45 16 3C16 3.55 16.45 4 17 4H20V7C20 7.55 20.45 8 21 8C21.55 8 22 7.55 22 7V3C22 2.45 21.55 2 21 2Z" fill="#222222"/>
+<path d="M7 20H4V17C4 16.45 3.55 16 3 16C2.45 16 2 16.45 2 17V21C2 21.55 2.45 22 3 22H7C7.55 22 8 21.55 8 21C8 20.45 7.55 20 7 20Z" fill="#222222"/>
+<path d="M21 16C20.45 16 20 16.45 20 17V20H17C16.45 20 16 20.45 16 21C16 21.55 16.45 22 17 22H21C21.55 22 22 21.55 22 21V17C22 16.45 21.55 16 21 16Z" fill="#222222"/>
+<path d="M14 19C14.55 19 15 18.55 15 18L15 15L18 15C18.55 15 19 14.55 19 14C19 13.45 18.55 13 18 13L14 13C13.45 13 13 13.45 13 14L13 18C13 18.55 13.45 19 14 19Z" fill="#222222"/>
+<mask id="path-6-inside-1_2023_34078" fill="white">
+<rect x="5" y="13" width="6" height="6" rx="1"/>
+</mask>
+<rect x="5" y="13" width="6" height="6" rx="1" stroke="#222222" stroke-width="4" mask="url(#path-6-inside-1_2023_34078)"/>
+<mask id="path-7-inside-2_2023_34078" fill="white">
+<rect x="5" y="5" width="6" height="6" rx="1"/>
+</mask>
+<rect x="5" y="5" width="6" height="6" rx="1" stroke="#222222" stroke-width="4" mask="url(#path-7-inside-2_2023_34078)"/>
+<mask id="path-8-inside-3_2023_34078" fill="white">
+<rect x="13" y="5" width="6" height="6" rx="1"/>
+</mask>
+<rect x="13" y="5" width="6" height="6" rx="1" stroke="#222222" stroke-width="4" mask="url(#path-8-inside-3_2023_34078)"/>
+</svg>

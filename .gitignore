@@ -1,0 +1,17 @@
+##
+*.mp4
+composer.json
+composer.lock
+vendor/**
+storage/**
+bootstrap/**
+config/**
+.env
+.nvim/**
+public/vendor/**
+database/migrations/**
+app/Providers/TelescopeServiceProvider.php
+video/**
+public/video/**
+public/storagefek
+public/storage
