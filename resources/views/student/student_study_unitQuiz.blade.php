@@ -1155,7 +1155,7 @@
             </div>
         </section>
         <section class="quiz-container position-relative">
-            <div class="quiz-cont">
+            <div class="quiz-cont zoom_sm">
                 <div class="quiz-question-wrap">
                     <input type="hidden" data-exam-seq>
                     <input type="hidden" data-exam-num>
@@ -2365,9 +2365,13 @@ function updateRightList(currentIndex){
     if(exam_type == 'normal' && !is_grading){
         // 채점전 문제목록
         updateLearningGridUpdate(currentIndex);
+        moveScrollTo(currentIndex);
     }else{
         // 채점후 문제목록
+        const top = document.querySelector('.score-grid')?.scrollTop;
         updateScoreContainerUpdate(currentIndex)
+        document.querySelector('.score-grid').scrollTop = top;
+        moveScrollTo(currentIndex);
     }
 }
 // 채점전 문제목록
@@ -2517,18 +2521,21 @@ function activeNowCurrentExmaList(){
     document.querySelectorAll(".score-grid-item").forEach((item, idx) => {
         item.classList.remove("active");
     });
+    // let target = undefined;
     if(exam_type == 'normal'){
+        // target = document.querySelectorAll(".score-grid-item.normal")[idx];
         document.querySelectorAll(".score-grid-item.normal")[idx].classList.add("active");
     }else{
+        // target = document.querySelectorAll(".score-grid-item.nonenormal")[idx];
         document.querySelectorAll(".score-grid-item.nonenormal")[idx].classList.add("active");
     }
 
     try{
-        const scrollTop = document.querySelector('.score-grid .score-grid-item.active').offsetTop - 145;
-        document.querySelector('.score-grid').scroll(0,scrollTop);
-        // document.querySelector('.score-grid').scrollTo({
-        //     top: scrollTop,
-        //     behavior: 'smooth'
+        // const scrollTop = document.querySelector('.score-grid .score-grid-item.active').offsetTop - 145;
+        // document.querySelector('.score-grid').scroll(0,scrollTop);
+        // target.scrollIntoView({
+        //     behavior: 'smooth',
+        //     block: 'center' // 요소를 컨테이너의 중앙에 위치시킵니다.
         // });
     }catch(e){}
     }
@@ -3073,6 +3080,8 @@ function examCompleteUpdate(){
 
     queryFetch(page, parameter, function(result){
         if((result.resultCode||'') == 'success'){
+          setTopMenuComplete();
+          setTopMenuAllCompleteChk();
         }else{}
     });
 }
@@ -3415,5 +3424,48 @@ function makeBtnScore(){
             }
         }, 1000);
 }
+// 활성화 된 상단메뉴의 data-complete 속성 변경.
+function setTopMenuComplete(){
+    const top_div = document.querySelector('[data-section-study-video="top"]');
+    const active_top_menu = top_div.querySelector('.active');
+    active_top_menu.dataset.complete = 'Y';
+}
+//
+function setTopMenuAllCompleteChk(){
+    const top_div = document.querySelector('[data-section-study-video="top"]');
+    const top_menus = top_div.querySelectorAll('[data-type]');
+    let all_cnt = 0;
+    let complete_cnt = 0;
+    top_menus.forEach(function(item){
+        if(item.hidden == false ){
+            all_cnt++;
+            if(item.dataset.complete == 'Y'){
+                complete_cnt++;
+            }
+        }
+    });
+    if(all_cnt == complete_cnt){
+        document.querySelector('[data-main-student-lecture-detail-status]').value = 'complete';
+    }
+}
+
+// 스크롤 이벤트1 채점전
+function moveScrollTo(idx, type){
+  // 모든 learning-grid-item 요소를 선택합니다.
+  const items = document.querySelectorAll('.learning-grid-item, .score-grid-row');
+  // idx가 1부터 items.length 사이인지 확인합니다.
+  if (idx < 1 || idx > items.length) {
+    console.error('올바른 인덱스를 입력해주세요.');
+    return;
+  }
+  // 0-based index로 변경합니다.
+  const target = items[idx - 1];
+  // 해당 요소로 스무스하게 스크롤 이동합니다.
+  target.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start' // 요소를 컨테이너의 중앙에 위치시킵니다.
+  });
+}
+
 </script>
 @endsection

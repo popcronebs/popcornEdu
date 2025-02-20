@@ -582,7 +582,10 @@ class MyStudyMtController extends Controller
         // 강좌 정보
         $lecture_seq = $student_lectures->lecture_seq;
         $lectures = \App\Lecture::where('lectures.id', $lecture_seq)
-            ->leftJoin('lecture_uploadfiles', 'lecture_uploadfiles.lecture_seq', '=', 'lectures.id')
+            ->leftJoin('lecture_uploadfiles', function ($join) {
+                $join->on('lecture_uploadfiles.lecture_seq', '=', 'lectures.id')
+                    ->where('lecture_uploadfiles.file_type', '=', 'thumbnail');
+            })
             ->leftJoin('lecture_codes as subject_code', function ($join) {
                 $join->on('lectures.id', '=', 'subject_code.lecture_seq')
                 ->where('subject_code.code_category', '=', 'subject');
@@ -613,6 +616,40 @@ class MyStudyMtController extends Controller
             )->get();
         // 강좌 상세 정보.
         // $lecture_details = \App\LectureDetail::where('lecture_seq', $lecture_seq)->get();
+        // ====
+        // 강좌 학습 결과 / 총 문제.
+        $all_exams = \App\StudentLecture::where('student_seq', session()->get('student_seq'))
+            ->where('student_lectures.id', $student_lecture_seq)
+            ->whereIn('exam_details.exam_type', ['normal', 'similar', 'challenge', 'challenge_similar'])
+            ->leftJoin('lectures', 'student_lectures.lecture_seq', '=', 'lectures.id')
+            ->leftJoin('lecture_details', function ($join) {
+                $join->on('lectures.id', '=', 'lecture_details.lecture_seq')
+                    ->where('lecture_details.lecture_detail_type', '=', 'exam_solving');
+            })
+            ->leftJoin('exam_details', 'lecture_details.lecture_exam_seq', '=', 'exam_details.exam_seq')
+            ->select(
+                'student_lectures.lecture_seq',
+                'lecture_details.lecture_exam_seq',
+                'exam_details.exam_type',
+                'lecture_details.lecture_detail_group as lecture_detail_seq'
+            )
+            ->get()->groupBy('lecture_detail_seq');
+        $student_lecture_detail_seqs = $student_lecture_details->pluck('id')->toArray();
+        $student_exam_results = \App\StudentExam::whereIn('student_exams.student_lecture_detail_seq', $student_lecture_detail_seqs)
+            ->where('student_exam_results.exam_type', '!=', 'easy')
+            ->where('lecture_detail_type', 'exam_solving')
+            ->leftJoin('student_exam_results', 'student_exams.id', '=', 'student_exam_results.student_exam_seq')
+            ->select(
+                'student_exams.id',
+                'student_exams.student_seq',
+                'student_exams.exam_seq',
+                'student_exams.student_lecture_detail_seq',
+                'student_exam_results.exam_type',
+                'student_exam_results.exam_status',
+                'student_exam_results.exam_num'
+            )
+            ->get()->groupBy('student_lecture_detail_seq');
+
 
 
         // 결과.
@@ -620,6 +657,8 @@ class MyStudyMtController extends Controller
         $result['student_lectures'] = $student_lectures;
         $result['student_lecture_details'] = $student_lecture_details;
         $result['lectures'] = $lectures;
+        $result['all_exams'] = $all_exams;
+        $result['student_exam_results'] = $student_exam_results;
         // $result['lecture_details'] = $lecture_details;
         return response()->json($result, 200);
     }

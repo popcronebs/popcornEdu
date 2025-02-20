@@ -135,7 +135,7 @@ class WrongNoteMtController extends Controller
 
 
     // 오답 노트 전체 카운트 가져오기.
-    private function getWrongCnt($data){
+    public function getWrongCnt($data){
         $student_seq = $data['student_seq'];
         $subject_seq = $data['subject_seq'] ?? null;
         $start_date = $data['start_date'] ?? null;
@@ -147,6 +147,7 @@ class WrongNoteMtController extends Controller
         $complete_exams = \App\StudentExam::
             select(
                 'student_exams.*',
+                'lectures.lecture_name',
                 'exams.exam_title',
                 'subject_codes.id as subject_seq',
                 'subject_codes.code_name as subject_name',
@@ -156,6 +157,8 @@ class WrongNoteMtController extends Controller
             )
             ->leftJoin('exams', 'student_exams.exam_seq', '=', 'exams.id')
             ->leftJoin('codes as subject_codes', 'exams.subject_seq', '=', 'subject_codes.id')
+            ->leftJoin('lecture_details', 'student_exams.lecture_detail_seq', '=', 'lecture_details.id')
+            ->leftJoin('lectures', 'lecture_details.lecture_seq', '=', 'lectures.id')
             ->where('student_exams.student_seq', $student_seq)
             ->where(function($query) use($start_date, $end_date){
                 if($start_date && $end_date){

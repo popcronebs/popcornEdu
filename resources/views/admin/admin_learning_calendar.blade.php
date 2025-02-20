@@ -79,6 +79,10 @@
         border-color: #DCDCDC;
     }
 
+    .black.form-check-input:checked {
+        background-color: #222;
+        border-color: #222;
+    }
     .modal-680 {
         --bs-modal-width: 680px;
     }
@@ -317,7 +321,7 @@
     height: 0;
 }
 [data-a-learncal-step3-tab].active{
-    color:#FFC747!important;
+    color:#222!important;
 }
 </style>
 
@@ -1088,11 +1092,8 @@
                         <div class="div_step3_sel_lecture_bunlde overflow-auto" style="max-height:400px;">
                             <div class="copy_div_step3_sel_lectures py-3" hidden>
                                 <div class="d-flex gap-2">
-                                    <div class="col-auto h-center">
-                                        <label class="radio">
-                                            <input type="checkbox" class="" name="lecture-step3-in-radio">
-                                            <span class=""></span>
-                                        </label>
+                                    <div class="col-auto h-center ps-1">
+                                        <input type="checkbox" class="form-check-input black zoom1 fs-5 inp_filter_tag" name="lecture-step3-in-radio">
                                     </div>
                                     <div class="col-auto">
                                         <img class="lecture_icon" src="" width="72">
@@ -3089,9 +3090,14 @@
                 if (is_first)
                     end_date.setDate(end_date.getDate() + 1);
                 is_first = true;
+                const lecture_detail_seq = row.querySelectorAll('[data-start-lecture-detail] option')[start_idx + (count)]?.value;
+                if(!lecture_detail_seq){
+                    toast('학습안에 강의 내용이 없습니다. 관리자에게 문의 해주세요.');
+                    return;
+                }
                 if (days['is_sun'] == 'Y' && end_date.getDay() == 0) {
                     part_info = {
-                        lecture_detail_seq: row.querySelectorAll('[data-start-lecture-detail] option')[start_idx + (count)].value,
+                        lecture_detail_seq: lecture_detail_seq,
                         date: end_date.format('yyyy-MM-dd'),
                         day: '일'
                     }
@@ -3099,7 +3105,7 @@
                     count++;
                 } else if (days['is_mon'] == 'Y' && end_date.getDay() == 1) {
                     part_info = {
-                        lecture_detail_seq: row.querySelectorAll('[data-start-lecture-detail] option')[start_idx + (count)].value,
+                        lecture_detail_seq: lecture_detail_seq,
                         date: end_date.format('yyyy-MM-dd'),
                         day: '월'
                     }
@@ -3107,7 +3113,7 @@
                     count++;
                 } else if (days['is_tue'] == 'Y' && end_date.getDay() == 2) {
                     part_info = {
-                        lecture_detail_seq: row.querySelectorAll('[data-start-lecture-detail] option')[start_idx + (count)].value,
+                        lecture_detail_seq: lecture_detail_seq,
                         date: end_date.format('yyyy-MM-dd'),
                         day: '화'
                     }
@@ -3115,7 +3121,7 @@
                     count++;
                 } else if (days['is_wed'] == 'Y' && end_date.getDay() == 3) {
                     part_info = {
-                        lecture_detail_seq: row.querySelectorAll('[data-start-lecture-detail] option')[start_idx + (count)].value,
+                        lecture_detail_seq: lecture_detail_seq,
                         date: end_date.format('yyyy-MM-dd'),
                         day: '수'
                     }
@@ -3123,7 +3129,7 @@
                     count++;
                 } else if (days['is_thu'] == 'Y' && end_date.getDay() == 4) {
                     part_info = {
-                        lecture_detail_seq: row.querySelectorAll('[data-start-lecture-detail] option')[start_idx + (count)].value,
+                        lecture_detail_seq: lecture_detail_seq,
                         date: end_date.format('yyyy-MM-dd'),
                         day: '목'
                     }
@@ -3131,7 +3137,7 @@
                     count++;
                 } else if (days['is_fri'] == 'Y' && end_date.getDay() == 5) {
                     part_info = {
-                        lecture_detail_seq: row.querySelectorAll('[data-start-lecture-detail] option')[start_idx + (count)].value,
+                        lecture_detail_seq: lecture_detail_seq,
                         date: end_date.format('yyyy-MM-dd'),
                         day: '금'
                     }
@@ -3139,7 +3145,7 @@
                     count++;
                 } else if (days['is_sat'] == 'Y' && end_date.getDay() == 6) {
                     part_info = {
-                        lecture_detail_seq: row.querySelectorAll('[data-start-lecture-detail] option')[start_idx + (count)].value,
+                        lecture_detail_seq: lecture_detail_seq,
                         date: end_date.format('yyyy-MM-dd'),
                         day: '토'
                     }

@@ -436,11 +436,11 @@ footer {
 }
 
 .status-current.completion {
-    background: #2FCD94;
+    background: #2FCD94 !important;
 }
 
 .status-current.doing {
-    background: #FF5065;
+    background: #FF5065 !important;
 }
 
 .aside-right .learning-list-body ul li img {

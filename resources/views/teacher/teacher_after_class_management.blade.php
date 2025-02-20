@@ -204,7 +204,7 @@
             <div class="col-auto scale-bg-gray_01 scale-text-gray_05 text-sb-20px p-3 rounded-3">
                 <span>
                     <label class="checkbox mt-1">
-                        <input type="checkbox" class="chk" onclick="event.stopPropagation();" data-is-ref-complete checked>
+                        <input type="checkbox" class="chk" onclick="event.stopPropagation();classManViewFullListRefSelect();" data-is-ref-complete checked>
                         <span class="" onclick="event.stopPropagation();">
                         </span>
                     </label>
@@ -212,7 +212,7 @@
                 </span>
                 <span>
                     <label class="checkbox mt-1">
-                        <input type="checkbox" class="chk" onclick="event.stopPropagation();" data-is-ref-expected checked>
+                        <input type="checkbox" class="chk" onclick="event.stopPropagation();classManViewFullListRefSelect();" data-is-ref-expected checked>
                         <span class="" onclick="event.stopPropagation();">
                         </span>
                     </label>
@@ -220,7 +220,7 @@
                 </span>
                 <span>
                     <label class="checkbox mt-1">
-                        <input type="checkbox" class="chk" onclick="event.stopPropagation();" data-is-ref-notthing checked>
+                        <input type="checkbox" class="chk" onclick="event.stopPropagation();classManViewFullListRefSelect();" data-is-ref-notthing checked>
                         <span class="" onclick="event.stopPropagation();">
                         </span>
                     </label>
@@ -1343,6 +1343,7 @@ function clssManDateTimeSel(vthis) {
     //datetime-local format yyyy.MM.dd HH:mm 변경
     const date = new Date(vthis.value);
     vthis.closest('[data-bundle-date]').querySelector('[data-date]').innerText = date.format('yyyy.MM.dd')
+    classManViewFullListRefSelect();
 }
 
 // 기간설정 select onchange

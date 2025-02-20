@@ -9,7 +9,7 @@
 
 @section('layout_coutent')
 <input type="hidden" data-main-student-lecutre-detail-seq value="{{ $st_lecture_detail_seq}}">
-<link rel="stylesheet" href="{{ asset('css/video.css') }}">
+<link rel="stylesheet" href="{{ asset('css/video.css?4') }}">
 
 <div class="col mx-0 row position-relative">
 
@@ -267,8 +267,8 @@
         const is_all_complete = document.querySelector('[data-main-student-lecture-detail-status]').value;
 
         if(is_all_complete == 'complete'){
-            msg1 = '<div class="text-b-28px">학습이 완료되어요.</div>';
-            msg2 = '<div class="text-b-28px text-danger pb-4 pt-3">학습을 그만할건가요?</div>';
+            msg1 = '<div class="text-b-28px">학습을 완료합니다.</div>';
+            msg2 = '<div class="text-b-28px text-danger pb-4 pt-3">학습을 그만하시겠습니까?</div>';
         }
         sAlert('', msg1 + msg2, 3, function() {
                 // 배경(음영) 삭제.
@@ -298,7 +298,7 @@
                 document.querySelector('.modal-backdrop').remove();
             },
             '더 해볼게요.',
-            '네,그만할게요.');
+            '네, 그만할게요.');
         // 배경음영.
         const myModal = new bootstrap.Modal(document.querySelector('#system_alert .modal'), {});
         myModal.show();
@@ -426,6 +426,7 @@
         }
         queryFetch(page, parameter, function(result) {
             if ((result.resultCode || '') == 'success') {}
+            studyVideoGetTodayStudy();
         })
     }
 
@@ -464,16 +465,17 @@
         queryFetch(page, parameter, function(result) {
             if ((result.resultCode || '') == 'success') {
                 // alert('학습이 완료되었습니다.');
-              let msg = "개념다지기를 완료하셨습니다.";
+              studyVideoGetTodayStudy();
+              let msg = "개념다지기를 완료했습니다.";
               const next_info = getIsNextLecture();
               const is_next = next_info[0];
               const next_data_type = next_info[1];
               // 다음수업이 있으면.
               if(is_next){
-                  msg += "<br>확인을 누르시면 다음 강의로 이동합니다. 이동하시겠습니까?";
+                  msg += "<br>확인을 누르면 다음 강의로 이동합니다. 이동하겠습니까?";
               }else{
                   // 모두 완료.종료
-                  msg += "<br>모든 강의를 완료하셨습니다. 종료하시겠습니까?";
+                  msg += "<br>모든 강의를 완료했습니다. 종료하겠습니까?";
               }
               sAlert('', '<div class="text-b-28px">'+msg+'</div>', 3, function(){
                   if(is_next){
@@ -533,7 +535,9 @@ window.addEventListener("message", function(event) {
                     // TODO: 약간 위험하긴한데 요청이므로,
                     // 만약 동영상이 없으면 먼저 complete해준다.
                     if(is_video_error){
-                        studyVideoComplete();
+                        setTimeout(function(){
+                            studyVideoComplete();
+                        },1000);
                     }else{
                         setTimeout(function(){
                             document.getElementById('div_interactive').hidden = true;
@@ -542,7 +546,9 @@ window.addEventListener("message", function(event) {
                     }
                 }else{
                     // 인터렉티브가 뒤이면 완료 처리해준다.
-                    studyVideoComplete();
+                    setTimeout(function(){
+                        studyVideoComplete();
+                    },1000);
                 }
             }
         }else if(event.data === "interactiveReady" ){

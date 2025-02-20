@@ -447,6 +447,9 @@
         font-weight: 600;
         text-align: center;
     }
+    .quiz-question img{
+        max-height:350px;
+    }
 
     .quiz-answer ul.quiz-answer-list {
         display: flex;
@@ -909,6 +912,7 @@
         width: 50%;
         padding: 0 5%;
         overflow: auto;
+        justify-content: center;
     }
     .quiz-view-answer-wrap .quiz-answer-wrap::-webkit-scrollbar{
         width: 10px;
@@ -1154,14 +1158,14 @@
             </div>
         </section>
         <section class="quiz-container position-relative">
-            <div class="quiz-cont">
+            <div class="quiz-cont zoom_sm">
                 <div class="quiz-question-wrap">
                     <input type="hidden" data-exam-seq>
                     <input type="hidden" data-exam-num>
                     <input type="hidden" data-exam-type>
                     <div class="quiz-view-answer-wrap">
                         <div class="quiz-question-view">
-                            <div class="div-shadow-style rounded-3 overflow-hidden">
+                            <div class="div-shadow-style rounded-3">
                                 <div class="quiz-question-view-title">보기</div>
                                 <div class="quiz-question"></div>
                             </div>
@@ -1504,9 +1508,17 @@ const quizData = [
                 @endforeach
             @elseif(count($images) > 0)
                 {{-- 패턴은 없지만 이미지가 있는 경우 --}}
-                @foreach($images as $imagePath)
-                    "<img src='{{ $imagePath }}'>",
+                @php
+                    $processedChoice = [];
+                    for ($i = 0; $i < 5; $i++) {
+                        $choice_str = (isset($choices[$i]) ? $choices[$i] : '') . (isset($images[$i]) ? "<br><img src='" . $images[$i] . "'>" : '');
+                        array_push($processedChoice, $choice_str);
+                    }
+                @endphp
+                @foreach($processedChoice as $choice)
+                    `{!! $choice !!}` ,
                 @endforeach
+
             @else
                 {{-- 패턴도 없고 이미지도 없는 경우 텍스트만 출력 --}}
                 @foreach($choices as $choice)
@@ -1621,8 +1633,15 @@ const semiQuizData = [
                 @endforeach
             @elseif(count($images) > 0)
                 //패턴은 없지만 이미지가 있는 경우
-                @foreach($images as $imagePath)
-                    "<img src='{{ $imagePath }}'>",
+                @php
+                    $processedChoice = [];
+                    for ($i = 0; $i < 5; $i++) {
+                        $choice_str = (isset($choices[$i]) ? $choices[$i] : '') . (isset($images[$i]) ? "<br><img src='" . $images[$i] . "'>" : '');
+                        array_push($processedChoice, $choice_str);
+                    }
+                @endphp
+                @foreach($processedChoice as $choice)
+                    `{!! $choice !!}` ,
                 @endforeach
             @else
                 //패턴도 없고 이미지도 없는 경우 텍스트만 출력
@@ -1728,8 +1747,15 @@ const challengeQuizData = [
                 @endforeach
             @elseif(count($images) > 0)
                 //패턴은 없지만 이미지가 있는 경우
-                @foreach($images as $imagePath)
-                    "<img src='{{ $imagePath }}'>",
+                @php
+                    $processedChoice = [];
+                    for ($i = 0; $i < 5; $i++) {
+                        $choice_str = (isset($choices[$i]) ? $choices[$i] : '') . (isset($images[$i]) ? "<br><img src='" . $images[$i] . "'>" : '');
+                        array_push($processedChoice, $choice_str);
+                    }
+                @endphp
+                @foreach($processedChoice as $choice)
+                    `{!! $choice !!}` ,
                 @endforeach
             @else
                 //패턴도 없고 이미지도 없는 경우 텍스트만 출력
@@ -1836,8 +1862,15 @@ const challengeSemiQuizData = [
                 @endforeach
             @elseif(count($images) > 0)
                 //패턴은 없지만 이미지가 있는 경우
-                @foreach($images as $imagePath)
-                    "<img src='{{ $imagePath }}'>",
+                @php
+                    $processedChoice = [];
+                    for ($i = 0; $i < 5; $i++) {
+                        $choice_str = (isset($choices[$i]) ? $choices[$i] : '') . (isset($images[$i]) ? "<br><img src='" . $images[$i] . "'>" : '');
+                        array_push($processedChoice, $choice_str);
+                    }
+                @endphp
+                @foreach($processedChoice as $choice)
+                    `{!! $choice !!}` ,
                 @endforeach
             @else
                 //패턴도 없고 이미지도 없는 경우 텍스트만 출력
@@ -2033,7 +2066,7 @@ function makeExam(index = 0, type = 0, data = quizData){
                 questionContainer.style.textAlign = 'center';
                 questionContainer.querySelector('.text-sb-20px')?.classList.remove('text-sb-20px');
                 quizQuestionView.children[0].style.height = `94%`;
-                questionContainer.style.height = `80%`;
+                // questionContainer.style.height = `80%`;
                 answerContainer.style.paddingRight = `20%`;
                 tryText.style.lineHeight = `1.5`;
             }else{
@@ -2480,6 +2513,7 @@ function updateScoreContainerUpdate(currentIndex){
     scoreContainer.classList.add("score-container");
     const scoreBody = document.createElement("div");
     scoreBody.classList.add("score-body");
+    scoreBody.classList.add("zoom_sm");
     const scoreGrid = document.createElement("div");
     scoreGrid.classList.add("score-grid");
     const circle = quizData
@@ -2490,7 +2524,7 @@ function updateScoreContainerUpdate(currentIndex){
     scoreGrid.innerHTML = quizData.map((question, idx) =>{
         let rtn_str = `
         <div class="score-grid-row" data-row="${idx}">
-            <div class="score-grid-item normal">
+            <div class="score-grid-item normal col">
                 <span>${question.questionNumber}번</span>
                 <span onclick="examListMove('normal')" class="
                 ${
@@ -2505,17 +2539,17 @@ function updateScoreContainerUpdate(currentIndex){
             </div>
         `;
         rtn_str += `
-            <div class="score-grid-item d-flex nonenormal">
-                <span class="after_exam col"> `
+            <div class="score-grid-item nonenormal col row">
+                <span class="after_exam col p-0"> `
             // 유사문제가 있으면, 유사
             // 도전무네가 잇으면 도전
             if(semiQuizData[idx]?.student_answer?.join(';') != undefined){
                  rtn_str += `유사</span>
-                            <div class="col all-center px-3 border-start border-bottom">
+                            <div class="col border-start border-bottom all-center">
                                 ${
                                     semiQuizData[idx]?.student_answer?.join(';') == semiQuizData[idx]?.answer.join(';')
-                                    ?   `<span onclick="examListMove('similar')" class="col pe-2 all-center marking2 score-circle "><span class="d-inline-block"></span></span>`
-                                    :   `<span onclick="examListMove('similar')" class="col pe-2 all-center marking2 score-stars"><span class="d-inline-block"></span></span>`
+                                    ?   `<span onclick="examListMove('similar')" class="col all-center marking2 score-circle "><span class="d-inline-block"></span></span>`
+                                    :   `<span onclick="examListMove('similar')" class="col all-center marking2 score-stars"><span class="d-inline-block"></span></span>`
                                 }
                                 {{-- <span class="col pe-2 all-center marking2"><span class="d-inline-block"></span></span> --}}
                             </div>
@@ -2524,26 +2558,32 @@ function updateScoreContainerUpdate(currentIndex){
                 `;
             }
             else if(challengeQuizData[idx]?.student_answer?.join(';') != undefined){
-                // TODO: max_width 76px 임시방편. UI 추후 수정.
-                 rtn_str += `도전</span>
-                            <div class="col all-center px-3" style="max-width:76px">
+                 let in_rtn_str = `도전</span>
+                            <div class="col border-start border-bottom row" style="">
                                 ${
                                     challengeQuizData[idx]?.student_answer?.join(';') == challengeQuizData[idx]?.answer.join(';')
-                                    ?   `<span onclick="examListMove('challenge')" class="col pe-2 all-center marking2 score-circle"><span class="d-inline-block"></span></span>`
-                                    :   `<span onclick="examListMove('challenge')" class="col pe-2 all-center marking2 score-stars"><span class="d-inline-block"></span></span>`
+                                    ?   `<span onclick="examListMove('challenge')"  class="col all-center marking2 p-0 score-circle"><span class="d-inline-block"></span></span>`
+                                    :   `<span onclick="examListMove('challenge')"  class="col all-center marking2 p-0 score-stars"><span class="d-inline-block"></span></span>`
                                 }
                                 ${
                                     challengeSemiQuizData[idx]?.student_answer?.join(';') != undefined &&
                                     challengeSemiQuizData[idx]?.student_answer?.join(';') == challengeSemiQuizData[idx]?.answer.join(';')
-                                    ?   `<span onclick="examListMove('challenge_similar')" class="col pe-2 all-center marking2 score-circle"><span class="d-inline-block"></span></span>`
+                                    ?   `<span onclick="examListMove('challenge_similar')"  class="col all-center marking2 p-0 score-circle"><span class="d-inline-block"></span></span>`
                                     :   challengeSemiQuizData[idx]?.student_answer?.join(';') != undefined
-                                        ? `<span onclick="examListMove('challenge_similar')" class="col pe-2 all-center marking2 score-stars"><span class="d-inline-block"></span></span>`
+                                        ? `<span onclick="examListMove('challenge_similar')"  class="col all-center marking2 p-0 score-stars"><span class="d-inline-block"></span></span>`
                                         : ``
                                 }
                             </div>
                         </div>
                     </div>
                 `;
+                if( challengeSemiQuizData[idx]?.student_answer?.join(';') != undefined &&
+                    challengeSemiQuizData[idx]?.student_answer?.join(';') == challengeSemiQuizData[idx]?.answer.join(';')
+                    || challengeSemiQuizData[idx]?.student_answer?.join(';') != undefined
+                ){
+                    in_rtn_str = in_rtn_str.replace(/style=""/gi, 'style="zoom:0.6"');
+                }
+                rtn_str += in_rtn_str;
             }else{
                  rtn_str += `-</span>
                             <div class="col all-center border-start border-bottom px-3">
@@ -3148,11 +3188,13 @@ function examCompleteUpdate(is_pass){
 
     queryFetch(page, parameter, function(result){
         if((result.resultCode||'') == 'success'){
-             if(!is_pass){
+             if(!is_pass) {
               let msg = "시험을 완료하셨습니다.";
               const next_info = getIsNextLecture();
               const is_next = next_info[0];
               const next_data_type = next_info[1];
+              setTopMenuComplete();
+              setTopMenuAllCompleteChk();
               // 다음수업이 있으면.
               if(is_next){
                   // msg += "<br>확인을 누르시면 다음 강의로 이동합니다. 이동하시겠습니까?";
@@ -3185,8 +3227,8 @@ function studyVideoExit() {
     // 학습이 완전히 끝낫는지 확인.
     const is_all_complete = document.querySelector('[data-main-student-lecture-detail-status]').value;
     if(is_all_complete == 'complete'){
-        msg1 = '<div class="text-b-28px">학습이 완료되어요.</div>';
-        msg2 = '<div class="text-b-28px text-danger pb-4 pt-3">학습을 그만할건가요?</div>';
+        msg1 = '<div class="text-b-28px">학습을 완료합니다.</div>';
+        msg2 = '<div class="text-b-28px text-danger pb-4 pt-3">학습을 그만하시겠습니까?</div>';
     }
     sAlert('', msg1 + msg2, 3, function() {
             // 배경(음영) 삭제.
@@ -3216,7 +3258,7 @@ function studyVideoExit() {
             }
         },
         '더 해볼게요.',
-        '네,그만할게요.');
+        '네, 그만할게요.');
     // 배경음영.
     const myModal = new bootstrap.Modal(document.querySelector('#system_alert .modal'), {});
     myModal.show();
@@ -3532,6 +3574,30 @@ function makeBtnScore(){
                 }
             }
         }, 1000);
+}
+// 활성화 된 상단메뉴의 data-complete 속성 변경.
+function setTopMenuComplete(){
+    const top_div = document.querySelector('[data-section-study-video="top"]');
+    const active_top_menu = top_div.querySelector('.active');
+    active_top_menu.dataset.complete = 'Y';
+}
+//
+function setTopMenuAllCompleteChk(){
+    const top_div = document.querySelector('[data-section-study-video="top"]');
+    const top_menus = top_div.querySelectorAll('[data-type]');
+    let all_cnt = 0;
+    let complete_cnt = 0;
+    top_menus.forEach(function(item){
+        if(item.hidden == false ){
+            all_cnt++;
+            if(item.dataset.complete == 'Y'){
+                complete_cnt++;
+            }
+        }
+    });
+    if(all_cnt == complete_cnt){
+        document.querySelector('[data-main-student-lecture-detail-status]').value = 'complete';
+    }
 }
 </script>
 @endsection

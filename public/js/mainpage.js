@@ -176,14 +176,14 @@ function stMainLoadTodaysLearningSelect(selectr_date) {
           if (total_sum > 0) {
               const total_sum_els = document.querySelectorAll('[data-today-total-sum]');
               total_sum_els.forEach(function(el) {
-                  el.innerText = total_sum.toString().padStart(2, '0');
+                  el.innerText = total_sum*1;
               });
           }
           // 오늘 완료 강의 수 넣기
           if (total_complete >= 0) {
               const total_complete_els = document.querySelectorAll('[data-today-total-complete]');
               total_complete_els.forEach(function(el) {
-                  el.innerText = total_complete != 0 ? total_complete.toString().padStart(2, '0') : '00';
+                  el.innerText = total_complete != 0 ? total_complete*1 : '0';
 
               });
           }

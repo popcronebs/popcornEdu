@@ -84,14 +84,19 @@ class UnitTestMtController extends Controller
         $exam_seq = $exam_seq->get();
 
         // 조건에 시험 불러오기.
-        $exams = \App\Exam::where('main_code', $main_code)
+        $exams = \App\Exam::where('exams.main_code', $main_code)
             ->where('grade_seq', $grade_seq)
-            ->where('evaluation_seq', $evaluation_seq);
+            ->where('evaluation_seq', $evaluation_seq)
+            ->join('lecture_details', function($join){
+                $join->on('exams.id', '=', 'lecture_details.lecture_exam_seq')
+                ->where('lecture_details.lecture_detail_group', '>', 0)
+                ->where('lecture_details.lecture_detail_type', 'unit_test');
+            });
             if($subject_type == 'subject'){
                 $exams = $exams->where('subject_seq', $subject_seq);
             }else if($subject_type == 'subject2'){
                 $exams = $exams->where('subject_seq2', $subject_seq);
-            }
+        }
 
         if($semester_seq != null && $semester_seq){
             $exams = $exams->where('semester_seq', $semester_seq);

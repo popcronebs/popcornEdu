@@ -181,6 +181,7 @@ class TeacherMainMtController extends Controller
     public function classSelect(Request $request)
     {
         $teach_seq = session()->get('teach_seq');
+        $team_code = session()->get('team_code');
         $teach_seq_post = $request->input('teach_seq');
         //틀리면 리턴
         if ($teach_seq != $teach_seq_post) {
@@ -192,7 +193,9 @@ class TeacherMainMtController extends Controller
             'grade_codes.code_name as grade_name'
         )
             ->leftJoin('codes as grade_codes', 'classes.grade', '=', 'grade_codes.id')
+            ->where('classes.team_code', $team_code)
             ->where('teach_seq', $teach_seq)->get();
+
         //$classes 에서 id를 키로 하는 배열을 만들기.
         $class_seqs = $classes->pluck('id')->toArray();
 
@@ -996,19 +999,20 @@ class TeacherMainMtController extends Controller
             end as day_of_week"));
             })
         ->where('class_study_dates.team_code', $team_code)
-            ->whereIn('class_study_dates.class_seq', function ($query) use ($class_seq, $teach_seq) {
+        ->whereIn('class_study_dates.class_seq', function ($query) use ($class_seq, $teach_seq) {
             //     if($class_seq){
             //         $query->select('id')->from('classes')->where('id', $class_seq);
             //     }else{
                     $query->select('id')->from('classes')->where('teach_seq', $teach_seq);
             //     }
-            });
+            })
+        ->where('class_study_dates.team_code', $team_code);
 
 
         if ($type == 'new_cnt') {
             //신규등록 수치
-            $new_cnt = \App\ClassMate::whereIn('class_seq', function ($query) use ($teach_seq) {
-                    $query->select('id')->from('classes')->where('teach_seq', $teach_seq);
+            $new_cnt = \App\ClassMate::whereIn('class_seq', function ($query) use ($teach_seq, $team_code) {
+                    $query->select('id')->from('classes')->where('teach_seq', $teach_seq)->where('team_code', $team_code);
                 })
                 ->whereDate('created_at', $date)->count();
             return $new_cnt;

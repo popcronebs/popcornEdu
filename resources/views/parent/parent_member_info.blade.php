@@ -21,7 +21,7 @@ aside .active svg path{
 }
 </style>
 
-<div class="col pe-3 ps-3 mb-3 row position-relative">
+<div class="col pe-3 ps-3 mb-3 row position-relative zoom_sm">
     <div class="sub-title row mx-0 justify-content-between" data-board-main>
         <h2 class="text-sb-42px px-0">
             <img src="{{ asset('images/graphic_memberinfo_icon.svg')}}" width="72">
@@ -99,7 +99,7 @@ aside .active svg path{
                                         <span data-ori="parent_name">
                                             {{ $parent ? $parent->parent_name : ''}}
                                         </span>
-                                        <span data-ori="parent_type">/ 모</span>
+                                        <span data-ori="parent_type" hidden>/ 모</span>
                                     </div>
                                     <input type="text" data-user-address data-modify-editor="parent_name" onclick=""  hidden
                                         class="text-m-20px px-4 scale-text-gray_05 border p-2 w-100 rounded-3" placeholder="" value="{{ $parent->parent_name }}">

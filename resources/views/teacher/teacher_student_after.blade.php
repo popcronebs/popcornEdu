@@ -177,10 +177,10 @@
     </div>
     <div class="d-flex justify-content-between align-items-center mt-52">
         <div class="col">
-            {{-- <button type="button"
+            <button type="button" onclick="teachStSmsModalOpen()"
                 class="btn-line-xss-secondary text-sb-20px border-gray rounded scale-bg-white scale-text-gray_05 px-3 me-2">
                 SMS 문자/알림톡
-            </button> --}}
+            </button>
         </div>
         <div class="my-custom-pagination col">
             <div class="col d-flex justify-content-center">
@@ -249,6 +249,9 @@
     <input name="region_seq">
     <input name="team_code">
 </form>
+
+{{-- 모달 / 상담일정 알림 발송 / 여기 안에 select_member 배열 있으므로, 확인 --}}
+@include('admin.admin_alarm_detail')
 
 <script>
 
@@ -647,6 +650,23 @@
             row.querySelector('.chk').checked = checked;
             row.querySelector('.chk').onchange();
         });
+    }
+
+    // 문자알림톡 모달 열기.
+    async function teachStSmsModalOpen(){
+        const keys = Object.keys(chks);
+        if(keys.length < 1){
+            toast('선택된 학생이 없습니다.');
+            return;
+        }
+        const student_seqs = [];
+        keys.forEach(function(key){
+            student_seqs.push(chks[key].student_seq);
+        });
+        if(await alarmSendGetSmsInfo(student_seqs)){
+            alarmSendSmsModalOpen();
+            alarmSelectUser();
+        }
     }
 </script>
 @endsection

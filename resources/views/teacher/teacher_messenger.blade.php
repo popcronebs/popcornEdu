@@ -75,6 +75,11 @@
             padding: 0rem 1rem 1rem 1rem;
         }
     }
+    .primary-bg-mian-hover.active{
+        background:#ffc746 !important;
+        color:white !important;
+    }
+
 </style>
 
 <script>
@@ -221,7 +226,8 @@
                     <span class="group_name text-sb-24px">{{ session()->get('group_name') ?? $teachers->group_name ?? ''}}</span>
                 </div>
                 <div class="col d-flex align-items-center pt-4">
-                    <div class="w-100 border-0 bg-light p-4 scale-text-gray_05 fw-medium text-center fs-5" style="resize: none" rows="3" id="teach_mess_div_teach_intro" maxlength="200" @if($login_type=='teacher' ) contenteditable="true" @endif>
+                    <div class="w-100 border-0 bg-light p-4 scale-text-gray_05 fw-medium text-center fs-5" placeholder="내용을 입력해주세요."
+                    style="resize: none" rows="3" id="teach_mess_div_teach_intro" maxlength="200" @if($login_type=='teacher' ) contenteditable="true" @endif>
                         @if(!empty($teachers))
                         {{ $teachers->message_intro }}
                         @endif
@@ -299,7 +305,7 @@
 
         {{-- 리스트 header --}}
         <div class="row col-12 rounded-4 shadow-sm-2 bg-white mx-0" id="teachmess_div_mes_head">
-            <div class="row m-0 py-0 px-3 border-bottom text-secondary" style="min-height: 80px">
+            <div class="row m-0 py-0 px-3 text-secondary" style="min-height: 80px">
                 <div class="col-7 row m-0 p-0">
                     <div class="col-auto p-2 d-flex align-items-center" onclick="event.stopPropagation();">
                         <input type="checkbox" class="form-check-input col-auto chk" onclick="event.stopPropagation();" onchange="teachMessAllChkMessenger(this);">
@@ -332,7 +338,7 @@
                     {{-- <img claass="col-auto" style="width:80px;height:80px"> --}}
                     <div class="col-4 d-flex align-items-center justify-content-center gap-2">
                         <div class="overflow-hidden rounded-3 my-3" style="width:56px;height:56px">
-                            <img class="profile_img_path" src="" width="56" onerror="this.src='/images/svg/profile_emtiy_avata.svg'">
+                            <img class="profile_img_path" src="" width="56" height="56" onerror="this.src='/images/svg/profile_emtiy_avata.svg'">
                         </div>
                         <div class="col ps-1">
                             <div class="fw-bold text-black pb-1">
@@ -342,7 +348,7 @@
                         </div>
                     </div>
                     <div class="col d-flex justify-content-center flex-column">
-                        <div class="message text-sb-20px scale-text-gray_05" data="#메시지"></div>
+                        <div class="message text-sb-20px scale-text-gray_05" style="line-height: 1.8rem;" data="#메시지"></div>
                     </div>
                 </div>
                 <div class="col row m-0 p-0 align-items-center">
@@ -400,15 +406,15 @@
 
                 <div class="row mt-4 px-4">
                     <div class="border rounded-circle overflow-hidden cursor-pointer col-auto p-0" style="width:55px;height:55px;"">
-                            <img src=" https://i.pinimg.com/originals/51/63/cb/5163cb671778d96ea5f70438d8079898.jpg" width="55">
+                            <img src="/images/svg/profile_emtiy_avata.svg" width="55" height="55" class="profile_img_path">
                     </div>
                     <div class="col">
                         <div class="row m-0">
                             <div class="col message w-100 form-control p-3 rounded-4" style="border-top-left-radius: 5px !important;"></div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 pe-0">
                                 <div class="row justify-content-end flex-column h-100">
-                                    <span class="contact_type text-primary-y cfs-9 fw-light"></span>
-                                    <span class="created_at_time text-secondary cfs-9 fw-light"></span>
+                                    <span class="contact_type text-primary-y cfs-9 fw-light pe-0"></span>
+                                    <span class="created_at_time text-secondary cfs-9 fw-light pe-0"></span>
                                 </div>
                             </div>
                         </div>
@@ -431,7 +437,7 @@
 
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer align-items-end">
                 <div contenteditable="true" class="col form-control cfs-6 editable shadow-none div_send_comment border-0" data-placeholder="쪽지를 보내세요."></div>
                 <button type="button" class="btn col-auto" onclick="teachMessModalReadAndAnswerSend()">
                     <img src="{{ asset('images/send_message_icon.svg') }}" alt="">
@@ -574,7 +580,7 @@
 
                         <div class="row div_sel_st_btm mt-4 mb-5 bg-light px-5 py-4 m-0 row-cols-3">
                             <div class="col row m-0 copy_div_sel_st sel_st justify-content-betwwen p-0 cfs-7 ctext-bc0" hidden>
-                                <span class="col m-0">
+                                <span class="col m-0 p-0">
                                     <span class="student_name"></span>
                                     (<span class="grade_name"></span>)
                                     <span class="after_str"></span>
@@ -859,6 +865,8 @@
 @endif
 <script>
     teachMessMessengerSelect();
+    initContentEditablePlaceholder('.text_send_message');
+    initContentEditablePlaceholder('#teach_mess_div_teach_intro');
 
     // TAB 메뉴 클릭
     function teachMessTabMenu(vthis) {
@@ -947,20 +955,20 @@
         const modal = document.querySelector('#teach_mess_modal_send');
         const chk = modal.querySelectorAll('.tr_st .chk:checked');
         if (chk.length < 1) {
-            sAlert('', '선택된 학생이 없습니다.');
+            sAlert('', '선택된 학생이 없습니다.', 4);
             return;
         }
 
         // 체크된학생의 student_seq를 가져와서
         // .div_sel_st_btm 에서 student_seq 와 같은 div_sel_st를 찾아서 button onclick 실행
         chk.forEach(chk => {
-            // const student_seq = chk.closest('.tr_st').querySelector('.student_seq').value;
-            // const div_sel_st = modal.querySelector('.div_sel_st_btm').querySelector('.div_sel_st .student_seq[value="'+student_seq+'"]');
-            // if(div_sel_st != null){
-            //     div_sel_st.closest('.div_sel_st').querySelector('button').click();
-            // }
+            const student_seq = chk.closest('.tr_st').querySelector('.student_seq').value;
+            const div_sel_st = modal.querySelector('.div_sel_st_btm').querySelector('.div_sel_st .student_seq[value="'+student_seq+'"]');
+            if(div_sel_st != null){
+                div_sel_st.closest('.div_sel_st').querySelector('button').click();
+            }
             // tr remove()
-            chk.closest('.tr_st').remove();
+            // chk.closest('.tr_st').remove();
         });
 
 
@@ -972,7 +980,7 @@
         const modal = document.querySelector('#teach_mess_modal_send');
         const chk = modal.querySelectorAll('.tr_st .chk:checked');
         if (chk.length < 1) {
-            sAlert('', '선택된 학생이 없습니다.');
+            sAlert('', '선택된 학생이 없습니다.', 4);
             return;
         }
 
@@ -1049,7 +1057,7 @@
         let is_exist = false;
         div_sel_sts.forEach(div_sel_st => {
             if (div_sel_st.querySelector('.student_seq').value == student_seq) {
-                sAlert('', '이미 추가된 학생입니다.');
+                sAlert('', '이미 추가된 학생입니다.', 4);
                 is_exist = true;
                 return;
             }
@@ -1128,7 +1136,7 @@
 
         const div_sel_st = modal.querySelectorAll('.div_sel_st');
         if (div_sel_st.length < 1) {
-            sAlert('', '선택된 학생이 없습니다.');
+            sAlert('', '선택된 학생이 없습니다.', 4);
             return;
         }
 
@@ -1145,6 +1153,7 @@
         modal.querySelectorAll('.type_send').forEach(type_send => {
             type_send.hidden = false;
         });
+        initContentEditablePlaceholder('.text_send_message');
     }
 
     // 쪽지 보내기
@@ -1159,15 +1168,15 @@
         const div_sel_st = modal.querySelectorAll('.div_sel_st');
         const login_type = document.querySelector('#teach_mess_div_teach_info .login_type').value;
         if (div_sel_st.length < 1 && login_type == 'teacher') {
-            sAlert('', '선택된 학생/학부모가 없습니다.');
+            sAlert('', '선택된 학생/학부모가 없습니다.', 4);
             return;
         }
 
         // 보낼 내용이 비어있는지 확인
         const div_message = modal.querySelector('.text_send_message');
         const message = div_message.innerHTML;
-        if (div_message.innerText.trim() == '') {
-            sAlert('', '보낼 내용을 입력하세요.');
+        if (div_message.innerText.trim().replace('내용을 입력해주세요.','') == '') {
+            sAlert('', '보낼 내용을 입력하세요.', 4);
             return;
         }
 
@@ -1220,9 +1229,9 @@
 
             if ((result.resultCode || '') == 'success') {
                 if (login_type == 'teacher') {
-                    sAlert('', '선택된 학생(들)에게 쪽지가 전송 되었습니다.');
+                    sAlert('', '선택된 학생(들)에게 쪽지가 전송 되었습니다.', 4);
                 } else if (login_type == 'student') {
-                    sAlert('', '선생님께 쪽지가 전송 되었습니다.');
+                    sAlert('', '선생님께 쪽지가 전송 되었습니다.', 4);
                 }
 
                 modal.querySelector('.modal_close').click();
@@ -1243,6 +1252,7 @@
         }
         // 모달 초기화
         teachMessModalSendClear();
+        teachMessStudentSelect();
         const myModal = new bootstrap.Modal(document.getElementById('teach_mess_modal_send'), {});
         myModal.show();
     }
@@ -1285,7 +1295,7 @@
         const div_mes_bundle = document.querySelector('#teachmess_div_mes_bundle');
         const chk = div_mes_bundle.querySelectorAll('.chk:checked');
         if (chk.length < 1) {
-            sAlert('', '선택된 쪽지가 없습니다.');
+            sAlert('', '선택된 쪽지가 없습니다.', 4);
             return;
         }
         const teach_seq = document.querySelector('#teach_mess_div_teach_info .teach_seq').value;
@@ -1299,7 +1309,7 @@
         sAlert('쪽지삭제', '선택된 쪽지를 삭제하시겠습니까? <br>받은쪽지를 삭제하면 상대방에게도 쪽지가 삭제됩니다.', 2, function() {
             queryFetch(page, parameter, function(result) {
                 if ((result.resultCode || '') == 'success') {
-                    sAlert('', '선택된 쪽지가 삭제되었습니다.');
+                    sAlert('', '선택된 쪽지가 삭제되었습니다.', 4);
                     teachMessMessengerSelect();
                 }
             });
@@ -1312,6 +1322,7 @@
         teachMessModalReadAndAnswerClear();
 
         // 쪽지함 상세내용 불러오기.
+        const profile_img_path = vthis.querySelector('.profile_img_path').src;
         const messenger_seq = vthis.querySelector('.messenger_seq').value;
         const contact_type = vthis.querySelector('.contact_type').value;
         const parent_seq = document.querySelector('#teach_mess_div_teach_info .parent_seq').value;
@@ -1349,12 +1360,13 @@
                 modal.querySelector('.contact_type').innerText = mess.contact_type;
                 // date + 요일
                 // 날짜로 요일 유추
-                const date_e = new Date(mess.created_at).format('yyyy.MM.dd');
+                const date_e = new Date(mess.created_at).format('yyyy-MM-dd');
                 const time_str = new Date(mess.created_at).format('a/p hh:mm');
 
                 modal.querySelector('.created_at').innerText = date_e;
                 modal.querySelector('.created_at_time').innerText = time_str;
                 modal.querySelector('.message').innerHTML = mess.message;
+                modal.querySelector('.profile_img_path').src = profile_img_path;
 
                 //날짜가 다르면 답변을 했다는 의미이므로
                 if (mess.updated_at != mess.created_at && (mess.comment || '') != '') {
@@ -1442,7 +1454,7 @@
 
         if (student_seqs.includes(div_list.querySelector('.student_seq').value)) {
             if (!is_all) {
-                sAlert('', '이미 추가된 학생입니다.');
+                sAlert('', '이미 추가된 학생입니다.', 4);
             }
             return;
         }
@@ -1490,7 +1502,7 @@
     // 선생님 학생에게 보이는 문구 변경.
     function teachMessTeachInitSave() {
         const div_teach_info = document.querySelector('#teach_mess_div_teach_info');
-        const message_intro = document.querySelector('#teach_mess_div_teach_intro').innerHTML;
+        const message_intro = document.querySelector('#teach_mess_div_teach_intro').innerText.replace('내용을 입력해주세요.', '');
         const teach_seq = div_teach_info.querySelector('.teach_seq').value;
         const page = "/teacher/messenger/intro/insert";
         const parameter = {
@@ -1498,13 +1510,13 @@
             teach_seq: teach_seq
         };
 
-        sAlert('변경', '입려하신 내용 및 사진으로 정보를 변경하시 겠습니까? (200글자 내외)', 2, function() {
+        sAlert('변경', '입려하신 내용 및 사진으로 정보를 변경하시 겠습니까? (200글자 내외)', 3, function() {
             memberInfoUpdateProfileImg();
             queryFetch(page, parameter, function(result) {
                 if ((result.resultCode || '') == 'success') {
-                    sAlert('', '변경되었습니다.');
+                    sAlert('', '변경되었습니다.', 4);
                 } else {
-                    sAlert('', '변경에 실패하였습니다. 다시 시도해주세요.');
+                    sAlert('', '변경에 실패하였습니다. 다시 시도해주세요.', 4);
                 }
             });
         });
@@ -1741,7 +1753,7 @@
 
         // 선생님 선택후 조회하기
         if (teach_seq == '') {
-            sAlert('', '선생님을 선택해주세요.');
+            sAlert('', '선생님을 선택해주세요.', 4);
             return;
         }
         // 관리자 페이지 숨기기
@@ -1944,8 +1956,8 @@
         const contact_type = modal.querySelector('.contact_type option[value="' + contact_seq + '"]').innerText;
         const login_type = document.querySelector('#teach_mess_div_teach_info .login_type').value;
 
-        if (message.trim() == '') {
-            sAlert('', '보낼 문의사항을 입력하세요.');
+        if (message.trim().replace('내용을 입력해주세요.','') == '') {
+            sAlert('', '보낼 문의사항을 입력하세요.', 4);
             return;
         }
         // 전송
@@ -1964,7 +1976,7 @@
         };
         queryFetch(page, parameter, function(result) {
             if ((result.resultCode || '') == 'success') {
-                sAlert('', '선생님께 쪽지가 전송 되었습니다.');
+                sAlert('', '선생님께 쪽지가 전송 되었습니다.', 4);
                 modal.querySelector('.modal_close').click();
                 // 이후 보낸쪽지 , 받은쪽지 리스트 불러오기.
                 teachMessMessengerSelect();
@@ -2073,6 +2085,36 @@
         rows.forEach(function(row){
             row.querySelector('.chk').checked = chk_bool;
         });
+    }
+    function initContentEditablePlaceholder(selector) {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(el => {
+        const placeholderText = el.getAttribute('placeholder');
+        if (!placeholderText) return;
+
+        // placeholder를 추가하는 함수
+        const addPlaceholder = () => {
+          if (!el.textContent.trim()) {
+            el.classList.add('placeholder-active');
+            // 사용자 입력과 구분하기 위해 innerHTML에 placeholder 텍스트 설정
+            el.innerHTML = placeholderText;
+          }
+        };
+
+        // 포커스 시 placeholder가 있다면 지웁니다.
+        const removePlaceholder = () => {
+          if (el.classList.contains('placeholder-active')) {
+            el.classList.remove('placeholder-active');
+            el.innerHTML = '';
+          }
+        };
+
+        el.addEventListener('focus', removePlaceholder);
+        el.addEventListener('blur', addPlaceholder);
+
+        // 초기 상태에 내용이 없으면 placeholder 추가
+        addPlaceholder();
+      });
     }
 </script>
 @endsection

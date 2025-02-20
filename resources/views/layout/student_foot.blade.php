@@ -181,6 +181,7 @@
 
     // 공지사항 이벤트 클릭
     function dashBoardBoardClick(vthis){
+        const modal = document.querySelector('#modal_div_board_detail');
         // 두번 클릭 안하게 하려면
         vthis.setAttribute('onclick', '');
         setTimeout(function(){
@@ -190,11 +191,12 @@
         const board_name = 'notice';
         // data-btn-board-close 에 onclick = layoutBoardCloseDetail(callback) 넣어주기.
         // :게시판 상세보기 양식1
-        const btn_detail_close = document.querySelector('[data-btn-board-close]');
+        const btn_detail_close = modal.querySelector('[data-btn-board-close]');
         btn_detail_close.setAttribute('onclick', "dashBoardBoardClose();");
         const parameter = {
             board_seq: board_seq,
-            board_name: board_name
+            board_name: board_name,
+            modal_id:'#modal_div_board_detail'
         };
         layoutBoardDetail(parameter, function(){
             // 게시판 상세 페이지 열릴때

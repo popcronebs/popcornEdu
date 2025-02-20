@@ -24,7 +24,7 @@
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.5/xlsx.full.min.js"></script>
-    <link href="{{ asset('css/admin_style.css?35') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin_style.css?36') }}" rel="stylesheet">
     <link href="{{ asset('css/mainstyle.css?11') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('font/font.css') }}">
     <link rel="stylesheet" href="{{ asset('css/colors-system.css?4') }}">

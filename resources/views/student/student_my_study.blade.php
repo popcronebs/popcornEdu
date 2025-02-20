@@ -5,7 +5,7 @@
 @section('add_css_js')
     <script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="{{ asset('js/owl.js') }}"></script>
-    <script src="{{ asset('js/mainpage.js?3') }}" defer></script>
+    <script src="{{ asset('js/mainpage.js?4') }}" defer></script>
     <link href="{{ asset('css/owl1.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl2.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main_page.css') }}" rel="stylesheet">
@@ -96,6 +96,9 @@
 .table-style.table-h-96 td{
     height: 76px;
 }
+.scale-text-white-hover.active{
+    color: #fff !important;
+}
 @media all and (max-width: 1400px) {
     [data-btn-my-study-aside-tab="month"] {
         margin-top: 0px;
@@ -115,7 +118,7 @@
 
 </style>
 <input type="hidden" id="inpage_type" value="{{$type}}">
-<div class="col pe-3 ps-3 mb-3 pt-5 row position-relative">
+<div class="col pe-3 ps-3 mb-3 pt-5 row position-relative zoom_sm">
     <input type="hidden" data-main-login-type="" value="{{$login_type}}">
 
     {{-- 나의 학습 시작 --}}
@@ -1144,28 +1147,32 @@
                             <span class="text-b-20px" data-lecture-detail-time >00:00</span>
                         </td>
                         <td onclick="myStudyViewLearningResults(this);">
-                            <div class="row">
+                            <div class="row" hidden>
                                 <div class="px-0 col-auto">기본</div>
                                 <div class="px-0 col text-end">
-                                    <span class="text-primary" data-complete-question-cnt>4</span>
-                                    /
-                                    <span data-all-question-cnt>5</span> 문제
+                                    <span class="text-primary" data-complete-question-cnt="normal">0</span>
+                                    <span data-all-question-cnt="normal"></span> 문제
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" hidden>
                                 <div class="px-0 col-auto">유사</div>
                                 <div class="px-0 col text-end">
-                                    <span class="text-primary" data-complete-question-cnt>4</span>
-                                    /
-                                    <span data-all-question-cnt>5</span> 문제
+                                    <span class="text-primary" data-complete-question-cnt="similar">0</span>
+                                    <span data-all-question-cnt="similar"></span> 문제
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" hidden>
                                 <div class="px-0 col-auto">도전</div>
                                 <div class="px-0 col text-end">
-                                    <span class="text-primary" data-complete-question-cnt>4</span>
-                                    /
-                                    <span data-all-question-cnt>5</span> 문제
+                                    <span class="text-primary" data-complete-question-cnt="challenge">0</span>
+                                    <span data-all-question-cnt="challenge"></span> 문제
+                                </div>
+                            </div>
+                            <div class="row" hidden>
+                                <div class="px-0 col-auto">도전유사</div>
+                                <div class="px-0 col text-end">
+                                    <span class="text-primary" data-complete-question-cnt="challenge_similar">0</span>
+                                    <span data-all-question-cnt="challenge_similar"></span> 문제
                                 </div>
                             </div>
                         </td>
@@ -1195,12 +1202,14 @@
                             <div class="px-0 scale-text-gray_05 h-center justify-content-end col">
                                 <span>맞힌 문제</span>
                                 <img src="{{asset('images/bar_icon.svg')}}" width="2" height="12" class="mx-2">
-                                <span class="text-black">3 문제</span>
+                                <span class="text-black" data-suc="normal">0</span>
+                                <span class="text-black ms-2">문제</span>
                             </div>
                             <div class="px-0 scale-text-gray_05 h-center justify-content-start col ps-3">
                                 <span>틀린문제</span>
                                 <img src="{{asset('images/bar_icon.svg')}}" width="2" height="12" class="mx-2">
-                                <span class="text-black">2 문제</span>
+                                <span class="text-black" data-all="normal">0</span>
+                                <span class="text-black ms-2">문제</span>
                             </div>
                         </div>
                     </div>
@@ -1212,12 +1221,15 @@
                             <div class="px-0 scale-text-gray_05 h-center justify-content-end col">
                                 <span>맞힌 문제</span>
                                 <img src="{{asset('images/bar_icon.svg')}}" width="2" height="12" class="mx-2">
-                                <span class="text-black">3 문제</span>
+                                <span class="text-black" data-suc="similar">0</span>
+                                <span class="text-black ms-2">문제</span>
+
                             </div>
                             <div class="px-0 scale-text-gray_05 h-center justify-content-start col ps-3">
                                 <span>틀린문제</span>
                                 <img src="{{asset('images/bar_icon.svg')}}" width="2" height="12" class="mx-2">
-                                <span class="text-black">2 문제</span>
+                                <span class="text-black" data-all="similar">0</span>
+                                <span class="text-black ms-2">문제</span>
                             </div>
                         </div>
                     </div>
@@ -1229,12 +1241,33 @@
                             <div class="px-0 scale-text-gray_05 h-center justify-content-end col">
                                 <span>맞힌 문제</span>
                                 <img src="{{asset('images/bar_icon.svg')}}" width="2" height="12" class="mx-2">
-                                <span class="text-black">3 문제</span>
+                                <span class="text-black" data-suc="challenge">0</span>
+                                <span class="text-black ms-2">문제</span>
                             </div>
                             <div class="px-0 scale-text-gray_05 h-center justify-content-start col ps-3">
                                 <span>틀린문제</span>
                                 <img src="{{asset('images/bar_icon.svg')}}" width="2" height="12" class="mx-2">
-                                <span class="text-black">2 문제</span>
+                                <span class="text-black" data-all="challenge">0</span>
+                                <span class="text-black ms-2">문제</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-sb-20px rounded-4 mt-4">
+                        <div class="bg-danger all-center p-3 rounded-top-4">
+                            <span class="text-white">도전 유사 문제</span>
+                        </div>
+                        <div class="row scale-bg-gray_01 p-4 rounded-bottom-4">
+                            <div class="px-0 scale-text-gray_05 h-center justify-content-end col">
+                                <span>맞힌 문제</span>
+                                <img src="{{asset('images/bar_icon.svg')}}" width="2" height="12" class="mx-2">
+                                <span class="text-black" data-suc="challenge_similar">0</span>
+                                <span class="text-black ms-2">문제</span>
+                            </div>
+                            <div class="px-0 scale-text-gray_05 h-center justify-content-start col ps-3">
+                                <span>틀린문제</span>
+                                <img src="{{asset('images/bar_icon.svg')}}" width="2" height="12" class="mx-2">
+                                <span class="text-black" data-all="challenge_similar">0</span>
+                                <span class="text-black ms-2">문제</span>
                             </div>
                         </div>
                     </div>
@@ -2076,8 +2109,10 @@ function myStudyNRCLectureRowSetting(result,type){
         // 학습전이면 나오면 안되므로.
         if(detail.status != 'ready') row.querySelector('[data-last-do-datetime]').innerHTML = detail.updated_at.substr(0, 10).replace(/-/gi, '.');
 
+        // TODO: 학습시간이 첫 준비하기의 비디오 시청 시간이 아니므로, 어떻게 해야할지 기획자 의견 필요.
         // "last_video_time/lecture_detail_time" 의 백분율
-        row.querySelector('[data-time-complete]').setAttribute('width', detail.last_video_time / detail.lecture_detail_time * 100 + '%');
+        // row.querySelector('[data-time-complete]').setAttribute('width', detail.last_video_time / detail.lecture_detail_time * 100 + '%');
+        row.querySelector('[data-bar-per]').setAttribute('width', detail.last_video_time / detail.lecture_detail_time * 100 + '%')
         if(detail.last_video_time){
             row.querySelector('[data-time-complete]').innerText = formatTime(detail.last_video_time) + ' / ' + formatTime(detail.lecture_detail_time);
         }
@@ -2224,6 +2259,8 @@ function myStudyStudentLectureInfoSelect(student_lecture_seq){
 
             let all_cnt = st_lec_details.length;
             let complete_cnt = 0;
+            const all_exams = result.all_exams;
+            const student_exam_results = result.student_exam_results;
             st_lec_details.forEach(function(detail){
                 const row = row_copy.cloneNode(true);
                 row.setAttribute('data-row', 'clone');
@@ -2231,6 +2268,51 @@ function myStudyStudentLectureInfoSelect(student_lecture_seq){
                 row.querySelector('[data-lecture-detail-name]').innerHTML = detail.lecture_detail_name;
                 row.querySelector('[data-lecture-detail-description]').innerHTML = detail.lecture_detail_description;
                 row.querySelector('[data-lecture-detail-time]').innerHTML = detail.lecture_detail_time;
+                if(all_exams[detail.lecture_detail_seq]){
+                   let normal_cnt = 0;
+                    let similar_cnt = 0;
+                    let challenge_cnt = 0;
+                    let challenge_similar_cnt = 0;
+                    all_exams[detail.lecture_detail_seq].forEach(function(exam){
+                        if(exam.exam_type == 'normal') normal_cnt++;
+                        if(exam.exam_type == 'similar') similar_cnt++;
+                        if(exam.exam_type == 'challenge') challenge_cnt++;
+                        if(exam.exam_type == 'challenge_similar') challenge_similar_cnt++;
+                    });
+                    if(normal_cnt > 0){
+                        row.querySelector('[data-all-question-cnt="normal"]').innerText = '/ '+normal_cnt;
+                        row.querySelector('[data-all-question-cnt="normal"]').closest('.row').hidden = false;
+                    }
+                    if(similar_cnt > 0){
+                        row.querySelector('[data-all-question-cnt="similar"]').innerText = '/ '+similar_cnt;
+                        row.querySelector('[data-all-question-cnt="similar"]').closest('.row').hidden = false;
+                    }
+                    if(challenge_cnt > 0){
+                        row.querySelector('[data-all-question-cnt="challenge"]').innerText = '/ '+challenge_cnt;
+                        row.querySelector('[data-all-question-cnt="challenge"]').closest('.row').hidden = false;
+                    }
+                    if(challenge_similar_cnt > 0){
+                        row.querySelector('[data-all-question-cnt="challenge_similar"]').innerText = '/ '+challenge_similar_cnt;
+                        row.querySelector('[data-all-question-cnt="challenge_similar"]').closest('.row').hidden = false;
+                    }
+                }
+                if(student_exam_results[detail.id]){
+                    const exam_type = student_exam_results[detail.id].exam_type;
+                    let normal_cnt = 0;
+                    let similar_cnt = 0;
+                    let challenge_cnt = 0;
+                    let challenge_similar_cnt = 0;
+                    student_exam_results[detail.id].forEach(function(exam){
+                        if(exam.exam_type == 'normal' && exam.exam_status == 'correct') normal_cnt++;
+                        if(exam.exam_type == 'similar' && exam.exam_status == 'correct') similar_cnt++;
+                        if(exam.exam_type == 'challenge' && exam.exam_status == 'correct') challenge_cnt++;
+                        if(exam.exam_type == 'challenge_similar' && exam.exam_status == 'correct') challenge_similar_cnt++;
+                    });
+                    if(normal_cnt > 0){ row.querySelector('[data-complete-question-cnt="normal"]').innerText = normal_cnt; }
+                    if(similar_cnt > 0){ row.querySelector('[data-complete-question-cnt="similar"]').innerText = similar_cnt; }
+                    if(challenge_cnt > 0){ row.querySelector('[data-complete-question-cnt="challenge"]').innerText = challenge_cnt; }
+                    if(challenge_similar_cnt > 0){ row.querySelector('[data-complete-question-cnt="challenge_similar"]').innerText = challenge_similar_cnt; }
+                }
                 //:학습span
                 if(detail.status == 'complete'){
                     complete_cnt++;
@@ -2328,10 +2410,50 @@ function myStudySelectWeekDate(sel_date){
 
 // TODO: 학습결과 클릭
 function myStudyViewLearningResults(vthis){
+    let all_normat_cnt = 0;
+    let all_similar_cnt = 0;
+    let all_challenge_cnt = 0;
+    let all_challenge_similar_cnt = 0;
+    let suc_normal_cnt = 0;
+    let suc_similar_cnt = 0;
+    let suc_challenge_cnt = 0;
+    let suc_challenge_similar_cnt = 0;
+
+   const td = vthis.closest('td');
+   all_normat_cnt = td.querySelector('[data-all-question-cnt="normal"]').innerText;
+   all_similar_cnt = td.querySelector('[data-all-question-cnt="similar"]').innerText;
+   all_challenge_cnt = td.querySelector('[data-all-question-cnt="challenge"]').innerText;
+   all_challenge_similar_cnt = td.querySelector('[data-all-question-cnt="challenge_similar"]').innerText;
+   suc_normal_cnt = td.querySelector('[data-complete-question-cnt="normal"]').innerText;
+   suc_similar_cnt = td.querySelector('[data-complete-question-cnt="similar"]').innerText;
+   suc_challenge_cnt = td.querySelector('[data-complete-question-cnt="challenge"]').innerText;
+   suc_challenge_similar_cnt = td.querySelector('[data-complete-question-cnt="challenge_similar"]').innerText;
+    modalClearCnt();
+    const modal = document.querySelector('#modal_lecture_result');
+    modal.querySelector('[data-all="normal"]').innerText = all_normat_cnt.replace('\/ ', '');
+    modal.querySelector('[data-all="similar"]').innerText = all_similar_cnt.replace('\/ ', '');
+    modal.querySelector('[data-all="challenge"]').innerText = all_challenge_cnt.replace('\/ ', '');
+    modal.querySelector('[data-all="challenge_similar"]').innerText = all_challenge_similar_cnt.replace('\/ ', '');
+    modal.querySelector('[data-suc="normal"]').innerText = suc_normal_cnt;
+    modal.querySelector('[data-suc="similar"]').innerText = suc_similar_cnt;
+    modal.querySelector('[data-suc="challenge"]').innerText = suc_challenge_cnt;
+    modal.querySelector('[data-suc="challenge_similar"]').innerText = suc_challenge_similar_cnt;
+
     const myModal = new bootstrap.Modal(document.getElementById('modal_lecture_result'), {
         keyboard: false
     });
     myModal.show();
+}
+function modalClearCnt(){
+    const modal = document.querySelector('#modal_lecture_result');
+    modal.querySelector('[data-all="normal"]').innerText = '0';
+    modal.querySelector('[data-all="similar"]').innerText = '0';
+    modal.querySelector('[data-all="challenge"]').innerText = '0';
+    modal.querySelector('[data-all="challenge_similar"]').innerText = '0';
+    modal.querySelector('[data-suc="normal"]').innerText = '0';
+    modal.querySelector('[data-suc="similar"]').innerText = '0';
+    modal.querySelector('[data-suc="challenge"]').innerText = '0';
+    modal.querySelector('[data-suc="challenge_similar"]').innerText = '0';
 }
 //학습하기.
 function myStudyVideoPlay(vthis){

@@ -6,9 +6,9 @@
             @endphp
             <img src="{{ $profile_img_path }}" alt="" onerror="this.src='/images/svg/profile_emtiy_avata.svg'" style="width:56px;height:56px">
         @elseif(session()->get('login_type') == 'teacher' && !empty($teacher->profile_img_path))
-            <img src="{{ asset('storage/uploads/user_profile/teacher/'.$teacher->profile_img_path) }}" alt="" style="width:56px;height:56px">
+            <img src="{{ asset('storage/uploads/user_profile/teacher/'.$teacher->profile_img_path) }}" alt="" style="width:56px;height:56px" onerror="this.src='/images/svg/profile_emtiy_avata.svg'">
         @elseif(session()->get('login_type') == 'parent' && !empty($parent->profile_img_path))
-            <img src="{{ asset('storage/uploads/user_profile/parent/'.$parent->profile_img_path) }}" alt="">
+            <img src="{{ asset('storage/uploads/user_profile/parent/'.$parent->profile_img_path) }}" alt="" style="width:56px;height:56px" onerror="this.src='/images/svg/profile_emtiy_avata.svg'">
         @else
             <img src="/images/svg/profile_emtiy_avata.svg" alt="">
         @endif

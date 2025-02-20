@@ -884,8 +884,10 @@ function myScoreMiddleSubjectList(callback){
                 document.querySelectorAll('[data-middel-scorecard].active')[0].click();
             }
         }else{}
-          // 활성화 되어있는 과목 불러오기.
-          myScoreActiveSubjectList();
+        // 활성화 되어있는 과목 불러오기.
+        myScoreActiveSubjectList();
+        // 과목 점수가 없을때, 끝으로이동.
+        myScoreNoneSubjectMoveLeft();
     });
 }
 
@@ -1017,5 +1019,29 @@ function myScorePlayVido(vthis) {
           }
       }
   }
+
+// 과목 점수가 없을때, 끝으로이동.
+function myScoreNoneSubjectMoveLeft() {
+  // 과목 카드들이 담긴 컨테이너 선택 (data-bundle="subject_grades")
+  const container = document.querySelector('[data-bundle="subject_grades"]');
+  if (!container) {
+    console.error('컨테이너를 찾을 수 없습니다.');
+    return;
+  }
+
+  // 컨테이너 내의 모든 과목 카드(.col)를 선택합니다.
+  // querySelectorAll은 정적 NodeList를 반환하므로, 요소 이동 시 순서에 영향이 없습니다.
+  const subjectCards = container.querySelectorAll('.col');
+
+  subjectCards.forEach(card => {
+    // 각 카드 내부의 exam score 값을 가진 요소 선택
+    const scoreSpan = card.querySelector('[data-exam-rate]');
+    if (scoreSpan && scoreSpan.textContent.trim() === '-') {
+      // 점수가 "-"이면 해당 카드를 컨테이너의 마지막으로 이동합니다.
+      container.appendChild(card);
+    }
+  });
+}
+
 </script>
 @endsection

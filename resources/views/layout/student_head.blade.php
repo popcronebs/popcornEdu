@@ -24,7 +24,7 @@
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.5/xlsx.full.min.js"></script>
-    <link href="{{ asset('css/admin_style.css?33') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin_style.css?34') }}" rel="stylesheet">
     <link href="{{ asset('css/mainstyle.css?8') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('font/font.css') }}">
     <link rel="stylesheet" href="{{ asset('css/colors-system.css?4') }}">
@@ -39,7 +39,7 @@
     @yield('add_css_js')
 
     <title>@yield('head_title', '서당 EBS')</title>
-    
+
 </head>
 
 <body class="zoom_tbt">

@@ -316,7 +316,7 @@ if (session()->get('student_seq') == null ){
     <input type="hidden" id="layout_menu_seq" value="{{ $current_menu_seq }}">
     {{-- 학부모 정보--}}
     <!-- : 자녀 선택시 선택자녀 변경 기능 추가. -->
-    <div data-main-top-user-menu hidden class="popup-menu modal-shadow-style position-fixed bg-white rounded-3 right-0 px-0 " style="width:300px;right:5%;top:150px;z-index: 1000;">
+    <div data-main-top-user-menu hidden class="popup-menu modal-shadow-style position-fixed bg-white rounded-3 right-0 px-0 zoom_sm" style="width:300px;right:5%;top:150px;z-index: 1000;">
         <div class="p-4">
             <div class="user-info row">
                 <div class="px-0 col-auto">

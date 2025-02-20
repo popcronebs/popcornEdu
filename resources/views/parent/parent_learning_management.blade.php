@@ -153,7 +153,7 @@
                     </div>
                 </div>
                 <div class="content-x-wheels overflow-x-scroll d-flex gap-3 mx-3 pb-3" data-btn-study data-bundle="todays_learning">
-                    <div class="card-wrap flex-row" data-row="copy" hidden onclick="stMainPlayVido(this)">
+                    <div class="card-wrap flex-row" data-row="copy" hidden onclick="">
                         <div class="card-item " data-card-item>
                             <input type="hidden" data-st-lecture-detail-seq>
                             <div class="card-cont position-relative">
@@ -178,7 +178,7 @@
                     </div>
                     <x-spinner class="mb-3" style="top: 50%;" item-style="transform: scale(0.5);height: 120px;" />
                 </div>
-                                  
+
                 <div class="content-lesson-empty d-flex flex-column align-items-center justify-content-center h-100 gap-4 scale-bg-gray_01 d-none">
                     <img class="mt-2" src="{{asset('images/popcorn_symbol_logo.svg')}}" alt="">
                     <div class="d-flex text-center gap-2 flex-column">

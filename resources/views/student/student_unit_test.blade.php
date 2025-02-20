@@ -14,6 +14,9 @@
     #unit_test_ul_unit li:last-child{
         margin-bottom: 0 !important;
     }
+    .scale-text-white-hover.active{
+        color: #fff !important;
+    }
 </style>
 <div class="unit-evaluation-container">
     {{-- 상단 --}}
@@ -162,7 +165,7 @@
                             <div class="text-b-24px" data-exam-title>1단원</div>
                             <div class="is_national_evaluation" >
                                 {{-- padding 70px --}}
-                                <div style="height:100px"></div>
+                                <div style="height:80px"></div>
                                 <div class="row" data-div-my-score hidden>
                                     {{-- 내점수 --}}
                                     <div class="col row px-2 rounded-4 bg-white m-0 me-2" style="">
@@ -349,7 +352,11 @@ function examSelect(data){
                 const row = row_copy.cloneNode(true);
                 row.dataset.row = "clone";
                 row.hidden = false;
-                row.querySelector('[data-exam-title]').innerText = `${index+1}단원 ${subject_name}`;
+                row.querySelector('[data-exam-title]').innerHTML = `${exam.exam_title}`
+                +`
+                    <div class="text-sb-20px scale-text-gray_05 mt-3">${exam.lecture_detail_description}</div>
+                    <div class="text-sb-20px scale-text-gray_05 mt-2">${exam.lecture_detail_name}</div>
+                `;
                 row.querySelector('[data-exam-seq]').value = exam.id;
                 // 시험을 쳤으면 점수 보여주기.
                 if(student_exams[exam.id]?.length > 0){

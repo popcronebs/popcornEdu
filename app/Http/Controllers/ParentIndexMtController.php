@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Http\Controllers\WrongNoteMtController as WnoteMt;
 
 class ParentIndexMtController extends Controller
 {
@@ -12,6 +12,13 @@ class ParentIndexMtController extends Controller
     public function list(){
         $student_seq = session()->get('student_seq');
         $student_last_url = '학습 중'; // 기본값 설정
+
+        $wr= new WnoteMt();
+        $data['student_seq'] = $student_seq;
+        $dates = $wr->getSumStartDate();
+        $data['start_date'] = $dates[0];
+        $data['end_date'] = $dates[1];
+        $wrongs_array = $wr->getWrongCnt($data);
 
         try {
             // 학생 세션 정보 조회
@@ -53,7 +60,9 @@ class ParentIndexMtController extends Controller
                     }
                 } else {
                     return view('parent.parent_index', [
-                        'student_last_url' => '오프라인'
+                        'student_last_url' => '오프라인',
+                        'complete_exams' => $wrongs_array['complete_exams'],
+                        'wrong_sld_seqs' => $wrongs_array['wrong_sld_seqs']
                     ])->with('error', '세션 파일을 찾을 수 없음');
                 }
             }else{
@@ -61,7 +70,9 @@ class ParentIndexMtController extends Controller
             }
 
             return view('parent.parent_index', [
-                'student_last_url' => $student_last_url
+                'student_last_url' => $student_last_url,
+                'complete_exams' => $wrongs_array['complete_exams'],
+                'wrong_sld_seqs' => $wrongs_array['wrong_sld_seqs']
             ]);
 
         } catch (\Exception $e) {

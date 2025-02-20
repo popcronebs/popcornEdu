@@ -66,6 +66,7 @@
         const board_seq = data.board_seq;
         const board_name = data.board_name;
         detail_data = data;
+        const modal_id = data.modal_id;
         // 전송
         const page = "/manage/board/select";
         const parameter = {
@@ -83,7 +84,10 @@
                 // main-notice-detail 보이게 처리
                 // document.querySelector(tag_name).hidden = true;
                 if(callback) callback();
-                const main_detail = document.querySelector("[data-main-notice-detail]");
+                let main_detail = document.querySelector("[data-main-notice-detail]");
+                if(modal_id){
+                    main_detail = document.querySelector(modal_id).querySelector("[data-main-notice-detail]");
+                }
                 main_detail.hidden = false;
                 // result.bdupfile 첨부파일
                 const data = board_info.data[0];

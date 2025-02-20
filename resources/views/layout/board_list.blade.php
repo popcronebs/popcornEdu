@@ -1,3 +1,8 @@
+<style>
+.gray_filter{
+    filter: opacity(0.5);
+}
+</style>
 <div data-board-list-main>
 <input type="hidden" id="board_writer_name" value="{{ session()->get('teach_name') }}">
 <input type="hidden" id="board_writer_seq" value="{{ session()->get('teach_seq') }}">
@@ -82,7 +87,7 @@
                         <th class="use_support use_learning cursor-pointer" style="width:50px;" onclick="event.stopPropagation(); this.querySelector('.all_chk').click();" hidden>
                             <input type="checkbox" class="all_chk" onchange="boardAllChk(this);" onclick="event.stopPropagation();">
                         </th>
-                        <th style="width:50px;">번호</th>
+                        <th style="width:60px;">번호</th>
                         <th class="use_qna use_sdqna" hidden>처리상태</th>
                         <th class="use_notice use_faq use_learning" hidden>구분</th>
                         <th class="use_learning" hidden>과목</th>
@@ -238,14 +243,14 @@
                             </button>
 
 
-                            <li class="page-item" id="page_first" hidden>
+                            <li class="page-item rounded-pill" id="page_first" hidden>
                                 <a class="page-link text-m-20px" onclick="boardSelect('@yield('board_name', '')', this.innerText)">0</a></li>
                             <li class="page-item page_num active">
                                 <a class="page-link text-m-20px" href="#">1</a></li>
 
                             <button href="javascript:void(0)" class="btn p-0 next"
                             id="page_next">
-                                <img src="{{ asset('images/gray_arrow_right.svg') }}" alt="">
+                                <img src="{{ asset('images/calendar_arrow_right.svg') }}" alt="">
                             </button>
                         </ul>
                     </nav>
@@ -453,6 +458,17 @@ hidden>
         });
         //#page_first 클론
         const page_first = document.querySelector("#page_first");
+        if(current_page == 1){
+            document.querySelector('#page_prev').classList.add('gray_filter');
+            document.querySelector('#page_next').classList.remove('gray_filter');
+        }else if(current_page == last_page){
+            document.querySelector('#page_prev').classList.remove('gray_filter');
+            document.querySelector('#page_next').classList.add('gray_filter');
+        }
+        else{
+            document.querySelector('#page_prev').classList.remove('gray_filter');
+            document.querySelector('#page_next').classList.remove('gray_filter');
+        }
         //페이지는 1~10개 까지만 보여준다.
         let page_start = 1;
         let page_end = 10;

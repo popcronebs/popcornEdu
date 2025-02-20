@@ -74,76 +74,76 @@
         opacity: 0.3;
     }
 
-    @media all and (max-width: 1440px) {
-        .goal-bar {
-            position: absolute;
-            left: calc(50% - 35px);
-        }
-
-        .self-bar {
-            position: absolute;
-        }
-
-        .bar-month {
-            bottom: 0px;
-        }
-
-        .studey-doing {
-            font-size: 1rem;
-            color: #18DB72;
-            font-weight: 600;
-        }
-
-        .studey-before {
-            font-size: 1rem;
-            color: #45C4E7;
-            font-weight: 600;
-        }
-
-        .studey-completion {
-            font-size: 1rem;
-            color: #FF5065;
-            font-weight: 600;
-        }
-
-        .subject_kor_icon>div {
-            background: #FF8C39;
-        }
-
-        .subject_math_icon>div {
-            background: #6F91F7;
-        }
-
-        .subject_eng_icon>div {
-            background: #99DD42;
-        }
-
-        .subject_social_icon>div {
-            background: #FF92CD;
-        }
-
-        .subject_other_icon>div {
-            background: #63D8EC;
-        }
-
-        .owl-item div[data-row="clone"] {
-            color: #fff;
-        }
-
-        .owl-item div[data-course-name] {
-            color: #fff !important;
-        }
-
-        .owl-item span[data-status] {
-            padding: 6px 16px !important;
-            background: #fff !important;
-        }
-
-        .owl-item span[data-status]::before {
-            content: '' !important;
-            display: none !important;
-        }
-    }
+    /* @media all and (max-width: 1440px) { */
+    /*     .goal-bar { */
+    /*         position: absolute; */
+    /*         left: calc(50% - 35px); */
+    /*     } */
+    /**/
+    /*     .self-bar { */
+    /*         position: absolute; */
+    /*     } */
+    /**/
+    /*     .bar-month { */
+    /*         bottom: 0px; */
+    /*     } */
+    /**/
+    /*     .studey-doing { */
+    /*         font-size: 1rem; */
+    /*         color: #18DB72; */
+    /*         font-weight: 600; */
+    /*     } */
+    /**/
+    /*     .studey-before { */
+    /*         font-size: 1rem; */
+    /*         color: #45C4E7; */
+    /*         font-weight: 600; */
+    /*     } */
+    /**/
+    /*     .studey-completion { */
+    /*         font-size: 1rem; */
+    /*         color: #FF5065; */
+    /*         font-weight: 600; */
+    /*     } */
+    /**/
+    /*     .subject_kor_icon>div { */
+    /*         background: #FF8C39; */
+    /*     } */
+    /**/
+    /*     .subject_math_icon>div { */
+    /*         background: #6F91F7; */
+    /*     } */
+    /**/
+    /*     .subject_eng_icon>div { */
+    /*         background: #99DD42; */
+    /*     } */
+    /**/
+    /*     .subject_social_icon>div { */
+    /*         background: #FF92CD; */
+    /*     } */
+    /**/
+    /*     .subject_other_icon>div { */
+    /*         background: #63D8EC; */
+    /*     } */
+    /**/
+    /*     .owl-item div[data-row="clone"] { */
+    /*         color: #fff; */
+    /*     } */
+    /**/
+    /*     .owl-item div[data-course-name] { */
+    /*         color: #fff !important; */
+    /*     } */
+    /**/
+    /*     .owl-item span[data-status] { */
+    /*         padding: 6px 16px !important; */
+    /*         background: #fff !important; */
+    /*     } */
+    /**/
+    /*     .owl-item span[data-status]::before { */
+    /*         content: '' !important; */
+    /*         display: none !important; */
+    /*     } */
+    /* } */
 
     @media all and (max-width: 1400px) {
 
@@ -169,22 +169,21 @@
             height: 290px;
         }
 
-
     }
 </style>
-<div class="col row position-relative ">
+<div class="col row position-relative zoom_sm">
     <input type="hidden" data-main-student-seq value="{{ session()->get('student_seq') }}">
 
     {{-- 상단 배너 : 오답노트 유무 일단은 숨김처리 --}}
     <article class="row justify-content-center pt-3 pop-alert">
-        <div class="bg-primary-bg rounded-3 d-flex justify-content-between" style="width: 750px;height: 98px;padding: 0px 30px">
+        <div class="bg-primary-bg rounded-3 d-flex justify-content-between cursor-pointer" style="width: 750px;height: 98px;padding: 0px 30px">
             <div class="col-auto position-relative" style="width:122px">
                 <img class="position-absolute bottom-0" src="{{ asset('images/top_logo.png') }}" width="122">
             </div>
             <div class="d-flex align-items-center fw-bold">
-                <span>
+                <span onclick="location.href=`/student/wrong/note`">
                     <span class="cfs-5">오늘까지 완료해야할</span>
-                    <span class="cfs-5" style="color:#f3b527">오답노트가 3</span>
+                    <span class="cfs-5" style="color:#f3b527">오답노트가 {{$complete_exams->whereIn('id', $wrong_sld_seqs)->count()}}</span>
                     <span class="cfs-5">개 있습니다🔥🔥</span>
                 </span>
             </div>
@@ -315,7 +314,7 @@
                         <span class="text-sb-20px scale-text-gray_05 ms-2">목표 학습</span>
                     </div>
                     <div class="col-auto all-center">
-                        <span class="rounded-pill pt-3 ps-3" style="border:4px solid #FFC747;"></span>
+                        <span class="rounded-pill pt-3 ps-3" style="border:4px solid rgb(214, 0, 0);"></span>
                         <span class="text-sb-20px scale-text-gray_05 ms-2">스스로 학습</span>
                     </div>
                 </div>

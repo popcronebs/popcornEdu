@@ -503,7 +503,7 @@
                     row.hidden = false;
 
                     row.querySelector('[data-subject-name]').textContent = subject_codes[wrong.subject_seq]||'';
-                    row.querySelector('[data-unit-name]').textContent = wrong.unit_name||'';
+                    row.querySelector('[data-unit-name]').textContent = (wrong.lecture_name||'').replace((subject_codes[wrong.subject_seq]||''), '');
                     row.querySelector('[data-lecture-name]').textContent = wrong.exam_title||'';
                     row.querySelector('[data-lecture-detail-name]').textContent = wrong.lecture_detail_name||'';
                     row.querySelector('[data-wrong-cnt]').textContent = (wrong_cnts[wrong.id+'']||'0') ||'0';

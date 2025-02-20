@@ -30,7 +30,7 @@
 <input type="hidden" data-main-student-lecture-detail-status value="{{$lecture_detail_info->status}}">
 <input type="hidden" data-prev-page value="{{ $prev_page }}">
 
-<link rel="stylesheet" href="{{ asset('css/video.css?3') }}">
+<link rel="stylesheet" href="{{ asset('css/video.css?4') }}">
 <div class="col mx-0 row position-relative">
   <div class="col-lg col-lg-9 pe-0 ps-sm-2 ps-md-2 ps-lg-0">
     {{-- 동영상 시청 --}}
@@ -149,6 +149,7 @@
       <div class="learning-list-body position-relative">
         <ul data-bundle="todays_learning">
           <li class="learning-list-item" data-row="copy" hidden>
+            <input type="hidden" data-row-student-lecture-detail-seq value="">
             <div class="learning-list-item-title complete-learning">
               <p class="subject-name" data-lecture-name></p>
               <p class="lecture-name" data-lectdure-detail-name></p>
@@ -319,8 +320,8 @@ setTimeout(function(){
     let msg1 = '<div class="text-b-28px">아직 학습이 끝나지 않았어요.</div>';
     let msg2 = '<div class="text-b-28px text-danger pb-4 pt-3">정말 학습을 그만할건가요?</div>';
     if(is_all_complete == 'complete'){
-        msg1 = '<div class="text-b-28px">학습이 완료되어요.</div>';
-        msg2 = '<div class="text-b-28px text-danger pb-4 pt-3">학습을 그만할건가요?</div>';
+        msg1 = '<div class="text-b-28px">학습을 완료합니다.</div>';
+        msg2 = '<div class="text-b-28px text-danger pb-4 pt-3">학습을 그만하시겠습니까?</div>';
     }
     sAlert('', img1 + msg1 + msg2, 3, function() {
         // 배경(음영) 삭제.
@@ -347,7 +348,7 @@ setTimeout(function(){
         }
       }
       , '더 해볼게요.'
-      , '네,그만할게요.');
+      , '네, 그만할게요.');
 
     // 닫힐때 애니메이션
     document.querySelector('.modal-title').hidden = true;
@@ -422,7 +423,9 @@ setTimeout(function(){
       , lecture_detail_time: duration
     }
     queryFetch(page, parameter, function(result) {
-      if ((result.resultCode || '') == 'success') {}
+      if ((result.resultCode || '') == 'success') {
+      }
+      studyVideoGetTodayStudy();
     })
   }
 
@@ -469,6 +472,7 @@ setTimeout(function(){
           row.setAttribute('data-row', 'clone');
 
           // const video = row.querySelector('[data-lecture-video]');
+          row.querySelector('[data-row-student-lecture-detail-seq]').value = study_info.id;
           row.querySelector('[data-lecture-name]').textContent = study_info.lecture_name;
           row.querySelector('[data-lectdure-detail-name]').textContent = study_info.lecture_detail_name;
           // row.querySelector('[data-lecture-detail-time]').textContent = study_info.lecture_detail_time;
@@ -516,17 +520,18 @@ setTimeout(function(){
       queryFetch(page, parameter, function(result) {
           if ((result.resultCode || '') == 'success') {
               // alert('학습이 완료되었습니다.');
-              let msg = "영상강의를 시청 완료하셨습니다.";
-              let msg2 = "<div class='text-b-23px text-danger'>취소시 영상 재시청이 가능합니다.</div>";
+              studyVideoGetTodayStudy();
+              let msg = "영상강의 시청을 완료했습니다.";
+              let msg2 = "<div class='text-b-23px text-danger'>취소하면 영상을 다시 볼 수 있습니다.</div>";
               const next_info = getIsNextLecture();
               const is_next = next_info[0];
               const next_data_type = next_info[1];
               // 다음수업이 있으면.
               if(is_next){
-                  msg += "<br>확인을 누르시면 다음 강의로 이동합니다. 이동하시겠습니까?";
+                  msg += "<br> 확인을 누르면 다음 강의로 이동합니다. 이동하겠습니까?";
               }else{
                   // 모두 완료.종료
-                  msg += "<br>모든 강의를 완료하셨습니다. 종료하시겠습니까?";
+                  msg += "<br>모든 강의를 완료했습니다. 종료하겠습니까?";
               }
 
               sAlert('', '<div class="text-b-28px" style="line-height:2.5rem">'+msg+'</div>'+msg2, 3, function(){
@@ -590,7 +595,6 @@ setTimeout(function(){
       }
       return [is_next, next_data_type];
   }
-
 
 </script>
 @endsection

@@ -62,8 +62,12 @@ aside .active svg path{
     background-color: #FFBD19;
     border: #ffc746 solid 2px;
 }
+.primary-bg-mian-hover.active{
+    background:#ffc746 !important;
+    color:white !important;
+}
 </style>
-<div class="col pe-3 ps-3 mb-3 row position-relative">
+<div class="col pe-3 ps-3 mb-3 row position-relative zoom_sm">
 
     <div class="sub-title row mx-0 justify-content-between" data-board-main>
         <h2 class="text-sb-42px px-0">

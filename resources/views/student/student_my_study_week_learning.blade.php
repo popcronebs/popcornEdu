@@ -125,7 +125,7 @@
                     </div>
                     <div class="col-auto">
                         <button class="btn h-center p-0" data-btn-my-study-week-section="1"
-                            onclick="myStudyWeekSection(this);">
+                            onclick="myStudyWeekSection(this);myStudyMoveTopInfo('study_time_by_day');">
                             <img src="{{ asset('images/dropdown_arrow_down.svg') }}" width="32">
                         </button>
                     </div>
@@ -181,7 +181,7 @@
                                 {{-- <div class="col-1"></div> --}}
                                 @if (!empty($week))
                                     @foreach ($week as $idx => $wk)
-                                        <div data-row="{{ $wk }}"
+                                        <div data-row="{{ $wk }}" onclick="this.querySelector('[data-btn-my-study-week-btm]').click();"
                                             class="col row gap-2 align-items-end justify-content-center position-relative">
 
                                             <!-- 마우스오버 상단 시간 표기 -->
@@ -195,7 +195,7 @@
                                                 <div class="position-relative">
                                                     <img src="{{ asset('images/yellow_arrow_down_icon.svg') }}"
                                                         width="18" class="position-absolute"
-                                                        style="left: 43%;bottom:-13xpx">
+                                                        style="left: 43%;bottom:-13px">
                                                 </div>
 
                                             </div>
@@ -250,7 +250,7 @@
                     </div>
                     <div class="col-auto">
                         <button class="btn h-center p-0" data-btn-my-study-week-section="2"
-                            onclick="myStudyWeekSection(this);">
+                            onclick="myStudyWeekSection(this);myStudyMoveTopInfo('study_time_by_subject');">
                             <img src="{{ asset('images/dropdown_arrow_down.svg') }}" width="32">
                         </button>
                     </div>
@@ -304,7 +304,7 @@
                                 class="row mx-0 position-absolute top-0 bottom-0 start-0 end-0 ms-4 px-5">
                                 @if (!empty($subject_codes))
                                     @foreach ($subject_codes as $idx => $subject_code)
-                                        <div data-row="{{ $subject_code->id }}"
+                                        <div data-row="{{ $subject_code->id }}" onclick="this.querySelector('[data-btn-my-study-week-subject-btm]').click()"
                                             class="col row gap-2 align-items-end justify-content-center position-relative">
 
                                             <!-- 마우스오버 상단 시간 표기 -->
@@ -1341,7 +1341,7 @@ function myStudyShowWeeklyStudyTimeBtmBtnClick(vthis){
         el.hidden = true;
     });
     row.querySelector('[data-div-self-time]').hidden = false;
-
+    myStudyMoveTopInfo('study_time_by_day');
 }
 
 function myStudyShowWeekInDayTime (infos, weekday) {
@@ -1648,6 +1648,8 @@ function myStudyWeekSubjectTimeBtmClick(vthis){
         el.hidden = true;
     });
     row.querySelector('[data-div-self-time]').hidden = false;
+
+    myStudyMoveTopInfo('study_time_by_subject');
 
 }
 
@@ -2006,5 +2008,23 @@ function myStudyWeekBtnClick(vthis){
     document.querySelector('[data-main-now-week]').innerText = vthis.querySelector('.week_cnt').innerText + '주차';
     myStudyWeekTotalSelect();
 }
+
+function myStudyMoveTopInfo(name) {
+  // tag는 data-row 요소입니다.
+  const bundle = document.querySelector(`[data-bundle="${name}"]`);
+  const rows = bundle.querySelectorAll('[data-row]');
+  rows.forEach(tag => {
+      const self_bar = tag.querySelector('[data-self-bar]');
+      const self_time = tag.querySelector('[data-div-self-time]');
+      if (!self_bar || !self_time) return;
+      const self_bar_top = self_bar.offsetTop;
+      const self_time_height = self_time.offsetHeight;
+
+      const new_top = self_bar_top - self_time_height - 20;
+
+      self_time.style.top = new_top + 'px';
+  });
+}
+
 </script>
 

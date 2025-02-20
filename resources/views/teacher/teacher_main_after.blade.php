@@ -662,14 +662,15 @@
                     btn_save.innerText = '반 추가하기';
                 }
 
+                // if (modal.classList.contains('v2')) {
+                    mainAfterStudentSelect();
+                // }
+                //
                 const myModal = new bootstrap.Modal(document.getElementById('main_after_modal'), {
                     keyboard: false
                     , backdrop: 'static'
                 });
                 myModal.show();
-                if (modal.classList.contains('v2')) {
-                    mainAfterStudentSelect();
-                }
             }
             //
             function mainAfterClassSetting() {
@@ -678,9 +679,9 @@
                 modal.classList.toggle('v2');
 
                 // 열리면 학생 자동 불러오기.
-                if (modal.classList.contains('v2')) {
+                // if (modal.classList.contains('v2')) {
                     mainAfterStudentSelect();
-                }
+                // }
             }
 
             // 수업설정.

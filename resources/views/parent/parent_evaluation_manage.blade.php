@@ -34,7 +34,7 @@ aside .active svg path{
 }
 </style>
 
-<div class="col pe-3 ps-3 mb-3 row position-relative">
+<div class="col pe-3 ps-3 mb-3 row position-relative zoom_sm">
     <input type="hidden" value="{{ date('Y') }}" data-inp-year>
     <input type="hidden" value="{{ date('m') }}" data-inp-month>
 
@@ -1730,7 +1730,7 @@ function evalMiddleTeacherTalk(){
                 profile_img_path = data.profile_img_path;
 
             });
-            document.querySelector('[data-etc-contents]').innerHTML = content||'아직 내용이 없습니다.';
+            document.querySelector('[data-etc-contents]').innerHTML = content||'선생님 말씀이 없습니다';
             if(profile_img_path) {
                 document.querySelector('[data-profile-img-path]').src = '/storage/uploads/user_profile/teacher/'+profile_img_path;
             }

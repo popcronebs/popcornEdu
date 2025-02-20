@@ -3,7 +3,7 @@
 @section('head_title', '알림센터')
 
 @section('layout_coutent')
-<div class="">
+<div class="zoom_sm">
     <div class="sub-title d-flex justify-content-between">
         <h2 class="text-sb-42px">
             <img src="{{ asset('images/big_bell_icon.svg') }}" width="72">
